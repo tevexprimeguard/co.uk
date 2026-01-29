@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Tevex Prime Guard Security</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0d2b45;
+            --secondary-color: #c0974c;
+            --accent-color: #a3320b;
+            --light-color: #f4f7f9;
+            --dark-color: #17181a;
+            --border-radius: 10px;
+            --box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0d2b45 0%, #1a4060 100%);
+            padding: 2rem;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .logo i {
+            color: var(--secondary-color);
+        }
+
+        .login-header h1 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-header p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .login-box {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .input-with-icon {
+            position: relative;
+        }
+
+        .input-with-icon i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .input-with-icon input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-radius: var(--border-radius);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: white;
+        }
+
+        .input-with-icon input:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(192, 151, 76, 0.1);
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #e0b55a 100%);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(192, 151, 76, 0.3);
+        }
+
+        .btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn i {
+            font-size: 1.1rem;
+        }
+
+        .login-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+
+        .remember-me input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--secondary-color);
+        }
+
+        .forgot-password {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .login-footer a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            background: #fee;
+            color: #c33;
+            padding: 0.75rem 1rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+            border: 1px solid #fcc;
+            display: none;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .error-message.show {
+            display: flex;
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .security-notice {
+            background: rgba(13, 43, 69, 0.05);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .security-notice i {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+        }
+
+        /* Countdown timer */
+        .countdown-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(13, 43, 69, 0.95);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .countdown-box {
+            text-align: center;
+            color: white;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        .countdown-number {
+            font-size: 5rem;
+            font-weight: 700;
+            margin: 1rem 0;
+            color: var(--secondary-color);
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .countdown-message {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .login-box {
+                padding: 2rem;
+            }
+            
+            body {
+                padding: 1rem;
+            }
+            
+            .login-options {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>Tevex Prime Guard</span>
+            </div>
+            <h1>Secure Client Portal</h1>
+            <p>Enter your credentials to access your vault</p>
+        </div>
+
+        <div class="login-box">
+            <div class="security-notice">
+                <i class="fas fa-shield-alt"></i>
+                <span>This is a secure system. All login attempts are monitored and recorded.</span>
+            </div>
+
+            <div class="error-message" id="errorMessage">
+                <i class="fas fa-exclamation-circle"></i>
+                <span id="errorText">Invalid credentials. Please try again.</span>
+            </div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Client ID</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="username" placeholder="Enter your Client ID" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" placeholder="Enter your password" required>
+                        <button type="button" class="password-toggle" id="togglePassword">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn" id="loginBtn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Access Vault</span>
+                </button>
+
+                <div class="login-options">
+                    <label class="remember-me">
+                        <input type="checkbox" id="rememberMe">
+                        <span>Remember me</span>
+                    </label>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                </div>
+            </form>
+
+            <div class="login-footer">
+                <p>Return to <a href="index.html">main website</a> | Need help? <a href="#">Contact Support</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Countdown Overlay -->
+    <div class="countdown-overlay" id="countdownOverlay">
+        <div class="countdown-box">
+            <i class="fas fa-shield-alt" style="font-size: 3rem; margin-bottom: 1rem; color: var(--secondary-color);"></i>
+            <h2>Security Verification</h2>
+            <div class="countdown-number" id="countdownNumber">3</div>
+            <p class="countdown-message">Redirecting to secure vault...</p>
+            <p style="opacity: 0.7; font-size: 0.9rem;">Please wait while we verify your credentials</p>
+        </div>
+    </div>
+
+    <script>
+        // Encoded credentials (base64 encoded for basic obfuscation)
+        const encodedCredentials = {
+            // Username: patrick.lapaglia
+            // Password: TevexSecure2025!
+            validUsers: [
+                {
+                    username: btoa('patrick.lapaglia'),
+                    password: btoa('TevexSecure2025!'),
+                    name: 'Patrick Lapaglia'
+                },
+                {
+                    username: btoa('admin'),
+                    password: btoa('Admin@Secure123'),
+                    name: 'Administrator'
+                },
+                {
+                    username: btoa('client'),
+                    password: btoa('ClientAccess2025'),
+                    name: 'Demo Client'
+                }
+            ]
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('loginForm');
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            const loginBtn = document.getElementById('loginBtn');
+            const togglePassword = document.getElementById('togglePassword');
+            const errorMessage = document.getElementById('errorMessage');
+            const errorText = document.getElementById('errorText');
+            const countdownOverlay = document.getElementById('countdownOverlay');
+            const countdownNumber = document.getElementById('countdownNumber');
+
+            // Toggle password visibility
+            togglePassword.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                this.innerHTML = type === 'password' ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
+            });
+
+            // Check for saved credentials
+            const savedUsername = localStorage.getItem('tevex_username');
+            const savedPassword = localStorage.getItem('tevex_password');
+            
+            if (savedUsername && savedPassword) {
+                usernameInput.value = savedUsername;
+                passwordInput.value = savedPassword;
+                document.getElementById('rememberMe').checked = true;
+            }
+
+            // Form submission
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const username = usernameInput.value.trim();
+                const password = passwordInput.value.trim();
+                const rememberMe = document.getElementById('rememberMe').checked;
+
+                // Reset error
+                errorMessage.classList.remove('show');
+
+                // Validate inputs
+                if (!username || !password) {
+                    showError('Please enter both Client ID and password');
+                    return;
+                }
+
+                // Disable button and show loading
+                loginBtn.disabled = true;
+                loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
+
+                // Simulate API delay
+                setTimeout(() => {
+                    // Check credentials
+                    const isValid = validateCredentials(username, password);
+                    
+                    if (isValid) {
+                        // Save credentials if remember me is checked
+                        if (rememberMe) {
+                            localStorage.setItem('tevex_username', username);
+                            localStorage.setItem('tepex_password', password);
+                        } else {
+                            localStorage.removeItem('tevex_username');
+                            localStorage.removeItem('tevex_password');
+                        }
+
+                        // Show countdown overlay
+                        showCountdown();
+                    } else {
+                        // Show error
+                        showError('Invalid Client ID or password. Please try again.');
+                        loginBtn.disabled = false;
+                        loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i><span>Access Vault</span>';
+                        
+                        // Shake animation for wrong credentials
+                        loginForm.style.animation = 'shake 0.5s ease';
+                        setTimeout(() => {
+                            loginForm.style.animation = '';
+                        }, 500);
+                    }
+                }, 1500); // Simulate network delay
+            });
+
+            // Validate credentials against encoded data
+            function validateCredentials(username, password) {
+                const encodedUsername = btoa(username);
+                const encodedPassword = btoa(password);
+                
+                return encodedCredentials.validUsers.some(user => 
+                    user.username === encodedUsername && user.password === encodedPassword
+                );
+            }
+
+            // Show error message
+            function showError(message) {
+                errorText.textContent = message;
+                errorMessage.classList.add('show');
+            }
+
+            // Show countdown and redirect
+            function showCountdown() {
+                countdownOverlay.style.display = 'flex';
+                let count = 3;
+                
+                const countdownInterval = setInterval(() => {
+                    countdownNumber.textContent = count;
+                    count--;
+                    
+                    if (count < 0) {
+                        clearInterval(countdownInterval);
+                        redirectToDashboard();
+                    }
+                }, 1000);
+            }
+
+            // Redirect to dashboard
+            function redirectToDashboard() {
+                // Store login state in sessionStorage
+                sessionStorage.setItem('tevex_logged_in', 'true');
+                sessionStorage.setItem('tevex_last_login', new Date().toISOString());
+                
+                // Redirect to dashboard
+                window.location.href = 'dashboard.html';
+            }
+
+            // Forgot password link
+            document.querySelector('.forgot-password').addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Please contact our support team at support@tevexprime.com or call 1-800-555-1234 to reset your password.');
+            });
+
+            // Auto-focus username field
+            usernameInput.focus();
+        });
+    </script>
+</body>
+</html>
