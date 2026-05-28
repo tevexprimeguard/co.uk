@@ -7,6 +7,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="https://pbs.twimg.com/media/GlUVXk7XoAA_fbl?format=jpg&name=small">
     <style>
+        /* ... all your original CSS ... */
         :root {
             --primary-color: #0d2b45;
             --secondary-color: #c0974c;
@@ -413,14 +414,7 @@
     <script>
         // Encoded credentials (base64 encoded for basic obfuscation)
         const encodedCredentials = {
-            // Username: patrick.lapaglia
-            // Password: TevexSecure2025!
             validUsers: [
-                {
-                    username: btoa('Geraldcoburn40'),
-                    password: btoa('Myson2002!'),
-                    name: 'Gerald Allen Coburn'
-                },
                 {
                     username: btoa('Geraldcoburn40'),
                     password: btoa('Myson2002!'),
@@ -485,18 +479,24 @@
 
                 // Simulate API delay
                 setTimeout(() => {
-                    // Check credentials
-                    const isValid = validateCredentials(username, password);
+                    // Check credentials and get user object
+                    const user = validateCredentials(username, password);
                     
-                    if (isValid) {
+                    if (user) {
                         // Save credentials if remember me is checked
                         if (rememberMe) {
                             localStorage.setItem('tevex_username', username);
-                            localStorage.setItem('tepex_password', password);
+                            localStorage.setItem('tevex_password', password); // fixed typo
                         } else {
                             localStorage.removeItem('tevex_username');
                             localStorage.removeItem('tevex_password');
                         }
+
+                        // Store user session data (securely for client-side)
+                        sessionStorage.setItem('tevex_logged_in', 'true');
+                        sessionStorage.setItem('tevex_user_name', user.name);
+                        sessionStorage.setItem('tevex_username', username);
+                        sessionStorage.setItem('tevex_last_login', new Date().toISOString());
 
                         // Show countdown overlay
                         showCountdown();
@@ -515,12 +515,12 @@
                 }, 1500); // Simulate network delay
             });
 
-            // Validate credentials against encoded data
+            // Validate credentials against encoded data, returns user object if valid
             function validateCredentials(username, password) {
                 const encodedUsername = btoa(username);
                 const encodedPassword = btoa(password);
                 
-                return encodedCredentials.validUsers.some(user => 
+                return encodedCredentials.validUsers.find(user => 
                     user.username === encodedUsername && user.password === encodedPassword
                 );
             }
@@ -549,11 +549,6 @@
 
             // Redirect to dashboard
             function redirectToDashboard() {
-                // Store login state in sessionStorage
-                sessionStorage.setItem('tevex_logged_in', 'true');
-                sessionStorage.setItem('tevex_last_login', new Date().toISOString());
-                
-                // Redirect to dashboard
                 window.location.href = 'dashboard.html';
             }
 
