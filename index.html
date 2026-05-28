@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Tevex Prime Guard Security – Elite Protection for Digital & Physical Assets">
+    <title>Tevex Prime Guard Security – Cyber Security & Vault Storage</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="https://pbs.twimg.com/media/GlUVXk7XoAA_fbl?format=jpg&name=small">
+    <style>
+        :root {
+            --bg: #06060e;
+            --surface: #0d0d20;
+            --card: #161630;
+            --border: rgba(255, 255, 255, 0.08);
+            --text: #e0e0f0;
+            --text-light: #9999bb;
+            --accent: #9b7cfc;
+            --accent2: #00e5ff;
+            --pink: #ff5e9c;
+            --radius: 20px;
+            --shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+            --glass: rgba(14, 14, 35, 0.6);
+            --gradient: linear-gradient(135deg, var(--accent), var(--accent2));
+            --transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Dynamic grid background */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            z-index: -1;
+            animation: gridShift 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes gridShift {
+            0% {
+                opacity: 0.3;
+                background-position: 0 0;
+            }
+
+            100% {
+                opacity: 0.6;
+                background-position: 10px 10px;
+            }
+        }
+
+        /* Floating particles (CSS only) */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(155, 124, 252, 0.15);
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
+            animation: floatParticle 6s ease-in-out infinite;
+        }
+
+        @keyframes floatParticle {
+
+            0%,
+            100% {
+                transform: translateY(0) translateX(0) scale(1);
+            }
+
+            50% {
+                transform: translateY(-30px) translateX(20px) scale(1.2);
+            }
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: -0.3px;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            display: inline-block;
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -12px;
+            width: 70px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 3.5rem;
+            text-align: center;
+            font-size: 1.15rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(6, 6, 14, 0.75);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+            transition: padding 0.3s;
+        }
+
+        header.scrolled {
+            padding: 0.6rem 0;
+            background: rgba(6, 6, 14, 0.9);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.4rem;
+            text-decoration: none;
+        }
+
+        .logo i {
+            color: var(--accent2);
+            font-size: 2rem;
+            filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.6));
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            width: 32px;
+            height: 24px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: var(--accent);
+            margin: 4px 0;
+            transition: 0.3s;
+            border-radius: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            color: var(--accent2);
+        }
+
+        .btn-nav {
+            background: var(--gradient);
+            padding: 0.7rem 2rem;
+            border-radius: 40px;
+            color: #fff !important;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            letter-spacing: 0.3px;
+            box-shadow: 0 4px 15px rgba(155, 124, 252, 0.35);
+        }
+
+        .btn-nav:hover {
+            box-shadow: 0 8px 25px rgba(0, 229, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 320px;
+                height: 100vh;
+                background: var(--surface);
+                padding: 5rem 2rem;
+                transition: 0.4s;
+                z-index: 1001;
+            }
+
+            nav.active {
+                right: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1.8rem;
+            }
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* Hero with rich overlay and floating shapes */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            padding-top: 5rem;
+            position: relative;
+            overflow: hidden;
+            background: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 40%, rgba(155, 124, 252, 0.15) 0%, rgba(6, 6, 14, 0.9) 90%);
+            z-index: 1;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 50% 50%, rgba(0, 229, 255, 0.05) 0%, transparent 70%);
+            animation: slowSpin 30s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes slowSpin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            max-width: 650px;
+            margin: 0 auto 2.5rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 1rem 2.4rem;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            letter-spacing: 0.2px;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: #fff;
+            box-shadow: 0 8px 25px rgba(155, 124, 252, 0.5);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 229, 255, 0.5);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--accent2);
+            color: var(--accent2);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: var(--accent2);
+            color: #000;
+            box-shadow: 0 8px 25px rgba(0, 229, 255, 0.4);
+        }
+
+        /* Grid & Cards */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2.5rem 2rem;
+            transition: 0.35s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(155, 124, 252, 0.05) 0%, transparent 80%);
+            z-index: -1;
+            transition: 0.4s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 229, 255, 0.12);
+            border-color: var(--accent2);
+        }
+
+        .card:hover::before {
+            background: linear-gradient(135deg, rgba(155, 124, 252, 0.12) 0%, transparent 80%);
+        }
+
+        .card-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            background: rgba(155, 124, 252, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--accent2);
+            margin-bottom: 1.8rem;
+            transition: 0.3s;
+        }
+
+        .card:hover .card-icon {
+            background: rgba(0, 229, 255, 0.15);
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        /* About section with image */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            transition: 0.4s;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(6, 6, 14, 0.9), transparent);
+            padding: 2rem;
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2.2rem 1.5rem;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            transition: 0.3s;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent2);
+            box-shadow: 0 10px 30px rgba(0, 229, 255, 0.08);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent2);
+            margin-bottom: 0.3rem;
+            line-height: 1;
+        }
+
+        /* Why Choose Us (new section) */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .why-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            transition: 0.3s;
+        }
+
+        .why-item:hover {
+            border-color: var(--accent2);
+            transform: translateY(-5px);
+        }
+
+        .why-icon {
+            font-size: 2rem;
+            color: var(--accent2);
+            margin-bottom: 1rem;
+        }
+
+        /* Testimonials */
+        .testimonial-card {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            transition: 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent2);
+        }
+
+        .author-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent2);
+        }
+
+        /* Contact Form */
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form select {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1.2rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus,
+        .contact-form select:focus {
+            outline: none;
+            border-color: var(--accent2);
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            margin-bottom: 1rem;
+            transition: 0.3s;
+        }
+
+        .contact-item:hover {
+            border-color: var(--accent2);
+            transform: translateY(-3px);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: rgba(155, 124, 252, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent2);
+            font-size: 1.3rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 4rem 0 2rem;
+            color: var(--text-light);
+        }
+
+        footer h3 {
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        footer a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        footer a:hover {
+            color: var(--accent2);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border);
+            padding-top: 2rem;
+            margin-top: 3rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Floating particles -->
+    <div class="particles" aria-hidden="true">
+        <div class="particle" style="width:6px; height:6px; top:10%; left:20%; animation-delay:0s;"></div>
+        <div class="particle" style="width:4px; height:4px; top:30%; left:70%; animation-delay:1s;"></div>
+        <div class="particle" style="width:8px; height:8px; top:50%; left:40%; animation-delay:2s;"></div>
+        <div class="particle" style="width:5px; height:5px; top:70%; left:80%; animation-delay:3s;"></div>
+        <div class="particle" style="width:7px; height:7px; top:85%; left:10%; animation-delay:4s;"></div>
+        <div class="particle" style="width:3px; height:3px; top:20%; left:50%; animation-delay:5s;"></div>
+    </div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="header-inner">
+            <a href="#" class="logo"><i class="fas fa-shield-haltered"></i><span>Tevex Prime Guard</span></a>
+            <div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#why-us">Why Us</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="login.html" class="btn-nav">Client Portal</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Next‑Gen Security<br>for Your Digital & Physical Assets</h1>
+            <p>Military‑grade vaults, biometric access, and 24/7 monitoring. Trusted by elite clients worldwide.</p>
+            <div style="display:flex; gap:1.2rem; justify-content:center; flex-wrap:wrap;">
+                <a href="#contact" class="btn btn-primary"><i class="fas fa-shield-alt"></i> Get Secure Storage</a>
+                <a href="#services" class="btn btn-outline"><i class="fas fa-list"></i> View Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About with image -->
+    <section id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div>
+                    <h2>Trusted by Elite Clients Worldwide</h2>
+                    <p style="color:var(--text-light); margin-bottom:2rem;">For over 25 years, Tevex Prime Guard has
+                        provided absolute security for high‑net‑worth individuals, corporations, and governments. Our
+                        vaults combine cutting‑edge tech with unmatched discretion.</p>
+                    <div class="stats-grid" style="margin:0;">
+                        <div class="stat-item">
+                            <div class="stat-number">99.9%</div>
+                            <div>Uptime</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">25+</div>
+                            <div>Years</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">$15B+</div>
+                            <div>Protected</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">24/7</div>
+                            <div>Monitoring</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://media.istockphoto.com/id/844817032/photo/businessman-opening-a-safety-deposit-box.jpg?s=612x612&w=0&k=20&c=JJK7WHwV4vwGopoNS-qpYVlAXkcTwp4GfgHvaZn45nA="
+                        alt="Secure Vault Facility">
+                    <div class="image-overlay">
+                        <h3>State-of-the-Art Vault Facility</h3>
+                        <p>Maximum security with biometric access controls</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services">
+        <div class="container">
+            <h2>Premium Security Services</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-vault"></i></div>
+                    <h3>Private Vaults</h3>
+                    <p>Custom‑sized secure storage with biometric access, 24/7 surveillance, and climate control.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-box"></i></div>
+                    <h3>Safe Deposit Boxes</h3>
+                    <p>Multiple sizes for documents, jewelry, and small valuables with dual‑key access and insurance.
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-truck-fast"></i></div>
+                    <h3>Secure Transport</h3>
+                    <p>Armored vehicles, real‑time GPS tracking, and armed escort for high‑value shipments.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-gem"></i></div>
+                    <h3>Rare Item Storage</h3>
+                    <p>Specialized environments for art, antiques, and collectibles with preservation monitoring.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-shield-virus"></i></div>
+                    <h3>Cyber Vault</h3>
+                    <p>Encrypted digital storage for crypto keys, passwords, and sensitive corporate data.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-umbrella"></i></div>
+                    <h3>Insurance</h3>
+                    <p>Full‑value coverage through Lloyd's of London for all stored assets.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us (New detailed section) -->
+    <section id="why-us">
+        <div class="container">
+            <h2>Why Choose Tevex Prime Guard</h2>
+            <div class="why-grid">
+                <div class="why-item">
+                    <div class="why-icon"><i class="fas fa-fingerprint"></i></div>
+                    <h3>Biometric Multi‑Factor Auth</h3>
+                    <p>Retina, fingerprint, and voice recognition – no single point of failure.</p>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon"><i class="fas fa-user-shield"></i></div>
+                    <h3>Veteran Security Teams</h3>
+                    <p>All personnel are ex‑military or law enforcement with advanced asset‑protection training.</p>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon"><i class="fas fa-shield-haltered"></i></div>
+                    <h3>Seismic‑Rated Vaults</h3>
+                    <p>Engineered to withstand earthquakes, floods, and forced entry attempts.</p>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon"><i class="fas fa-cloud"></i></div>
+                    <h3>Redundant Power & Network</h3>
+                    <p>Multiple backup generators and satellite links ensure 100% uptime.</p>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon"><i class="fas fa-clock"></i></div>
+                    <h3>24/7 Concierge Access</h3>
+                    <p>Schedule visits anytime – our private client managers are always on call.</p>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon"><i class="fas fa-file-contract"></i></div>
+                    <h3>Full Regulatory Compliance</h3>
+                    <p>ISO 27001, SOC 2 Type II, and GDPR compliant – your data and assets are protected globally.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials">
+        <div class="container">
+            <h2>Client Testimonials</h2>
+            <div class="grid-3">
+                <div class="testimonial-card">
+                    <p>"Tevex provides unparalleled security for my art collection. Absolute peace of mind."</p>
+                    <div style="display:flex; align-items:center; gap:1rem; margin-top:1.5rem;">
+                        <img src="https://pbs.twimg.com/media/GlUXyJnXIAAj6a-?format=jpg&name=small"
+                            class="author-image" alt="John D.">
+                        <div><strong>John D.</strong><br><small style="color:var(--text-light)">Art Collector &
+                                Investor</small></div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"As a jewelry designer, I need absolute security. Tevex exceeds all expectations."</p>
+                    <div style="display:flex; align-items:center; gap:1rem; margin-top:1.5rem;">
+                        <img src="https://pbs.twimg.com/media/GlUYLziWsAAcxg_?format=jpg&name=small"
+                            class="author-image" alt="Sarah M.">
+                        <div><strong>Sarah M.</strong><br><small style="color:var(--text-light)">Jewelry
+                                Designer</small></div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Storing my family heirlooms at Tevex is priceless. Discretion and professionalism unmatched."
+                    </p>
+                    <div style="display:flex; align-items:center; gap:1rem; margin-top:1.5rem;">
+                        <img src="https://pbs.twimg.com/media/GlUYx5FXIAE4JBB?format=jpg&name=small"
+                            class="author-image" alt="Robert L.">
+                        <div><strong>Robert L.</strong><br><small style="color:var(--text-light)">Family Office
+                                Executive</small></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:3rem; margin-top:2rem;">
+                <div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <h4>Email Us</h4>
+                            <p>info@tevexprimeguards.us</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                        <div>
+                            <h4>Call Us</h4>
+                            <p>+44 (405) 303-7308</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <h4>Visit Us</h4>
+                            <p>505 Talbot St #909, London, ON N6A 2S6</p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form" onsubmit="event.preventDefault(); alert('Message sent! (demo)');">
+                    <input type="text" placeholder="Full Name" required>
+                    <input type="email" placeholder="Email" required>
+                    <select required>
+                        <option value="">Select a service</option>
+                        <option>Private Vault</option>
+                        <option>Safe Deposit Box</option>
+                        <option>Secure Transport</option>
+                        <option>Rare Item Storage</option>
+                        <option>Consultation</option>
+                    </select>
+                    <textarea rows="5" placeholder="Your message..." required></textarea>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Send Secure
+                        Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap:2rem;">
+                <div>
+                    <h3>Tevex Prime Guard</h3>
+                    <p style="color:var(--text-light);">Industry leader in high-security storage solutions.</p>
+                </div>
+                <div>
+                    <h3>Quick Links</h3>
+                    <a href="#home">Home</a><br><a href="#about">About</a><br><a href="#services">Services</a><br><a
+                        href="#contact">Contact</a>
+                </div>
+                <div>
+                    <h3>Services</h3>
+                    <a href="#services">Private Vaults</a><br><a href="#services">Safe Deposit Boxes</a><br><a
+                        href="#services">Secure Transport</a><br><a href="#services">Rare Item Storage</a>
+                </div>
+                <div>
+                    <h3>Contact</h3>
+                    <p style="color:var(--text-light);">info@tevexprimeguards.us<br>+44 (405) 303-7308</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 1997 - 2026 Tevex Prime Guard Security. All rights reserved. ISO 27001 Certified | SOC 2 Type
+                    II Compliant</p>
+                <div><a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Terms of Service</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu
+        const menuToggle = document.getElementById('menuToggle');
+        const mainNav = document.getElementById('mainNav');
+        const overlay = document.getElementById('overlay');
+        menuToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            overlay.classList.toggle('active');
+        });
+        overlay.addEventListener('click', () => {
+            mainNav.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mainNav.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Smooth anchor scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+
+</html>
