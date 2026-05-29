@@ -630,7 +630,7 @@
             <section class="section">
                 <h2>Submit a Support Ticket</h2>
                 <form
-                    onsubmit="event.preventDefault(); alert('Ticket submitted! Our team will respond shortly. (demo)'); this.reset();">
+                    onsubmit="event.preventDefault(); alert('Ticket submitted! Our team will respond shortly.'); this.reset();">
                     <input type="text" class="form-control" placeholder="Subject" required>
                     <select class="form-control" required>
                         <option value="">Category</option>
@@ -691,7 +691,7 @@
         const storedUser = sessionStorage.getItem('tevex_username') || 'client';
         const userProfiles = {
             'Geraldcoburn40': { fullName: '', initials: 'GC' },
-            'client': { fullName: 'Demo Client', initials: 'DC' }
+            'client': { fullName: '', initials: 'PS' }
         };
         const profile = userProfiles[storedUser] || { fullName: 'Client', initials: 'CL' };
         document.getElementById('userAvatar').textContent = profile.initials;
