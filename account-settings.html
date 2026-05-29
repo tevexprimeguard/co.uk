@@ -636,15 +636,15 @@
                     </div>
                 </div>
 
-                <form onsubmit="event.preventDefault(); alert('Changes saved! (demo)');">
+                <form onsubmit="event.preventDefault(); alert('Changes saved!');">
                     <label class="form-label">Full Name</label>
                     <input type="text" id="fullNameInput" class="form-control" value="">
 
                     <label class="form-label">Email Address</label>
-                    <input type="email" class="form-control" value="gerald.coburn@example.com">
+                    <input type="email" class="form-control" value="gerald.coburn@mail.com">
 
                     <label class="form-label">Phone Number</label>
-                    <input type="tel" class="form-control" value="+1 (555) 123-4567">
+                    <input type="tel" class="form-control" value="+1 (650) 534-6521">
 
                     <label class="form-label">Preferred Contact Method</label>
                     <select class="form-control">
@@ -697,7 +697,7 @@
             <!-- Change Password -->
             <section class="section">
                 <h2>Change Password</h2>
-                <form onsubmit="event.preventDefault(); alert('Password updated! (demo)');">
+                <form onsubmit="event.preventDefault(); alert('Password updated!');">
                     <label class="form-label">Current Password</label>
                     <input type="password" class="form-control" placeholder="••••••••">
                     <label class="form-label">New Password</label>
@@ -719,9 +719,9 @@
         const storedUser = sessionStorage.getItem('tevex_username') || 'client';
         const userProfiles = {
             'Geraldcoburn40': { fullName: '', initials: 'GC', email: 'gerald.coburn@mail.com', phone: '+1 (650) 563-4534' },
-            'client': { fullName: 'Demo Client', initials: 'DC', email: 'demo@example.com', phone: '+1 (555) 000-0000' }
+            'client': { fullName: '', initials: 'PS', email: 'patrick_453@mail.com', phone: '+1 (650) 490-3754' }
         };
-        const profile = userProfiles[storedUser] || { fullName: 'Client', initials: 'CL', email: 'client@example.com', phone: '+1 (555) 000-0000' };
+        const profile = userProfiles[storedUser] || { fullName: 'Patrick Smith', initials: 'PS', email: 'patrick_465@mail.com', phone: '+1 (650) 490-3754' };
 
         document.getElementById('userAvatar').textContent = profile.initials;
         document.getElementById('userDropdownName').textContent = profile.fullName;
