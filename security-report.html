@@ -666,7 +666,7 @@
         const storedUser = sessionStorage.getItem('tevex_username') || 'client';
         const userProfiles = {
             'Geraldcoburn40': { fullName: '', initials: 'GC' },
-            'client': { fullName: 'Demo Client', initials: 'DC' }
+            'client': { fullName: '', initials: 'PS' }
         };
         const profile = userProfiles[storedUser] || { fullName: 'Client', initials: 'CL' };
         document.getElementById('userAvatar').textContent = profile.initials;
