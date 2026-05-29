@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Why Us | Tevex Prime Guard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="https://pbs.twimg.com/media/GlUVXk7XoAA_fbl?format=jpg&name=small">
+    <style>
+        :root {
+            --bg: #06060e;
+            --surface: #0d0d20;
+            --card: #161630;
+            --border: rgba(255, 255, 255, 0.08);
+            --text: #e0e0f0;
+            --text-light: #9999bb;
+            --accent: #9b7cfc;
+            --accent2: #00e5ff;
+            --pink: #ff5e9c;
+            --radius: 20px;
+            --shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+            --glass: rgba(14, 14, 35, 0.6);
+            --gradient: linear-gradient(135deg, var(--accent), var(--accent2));
+            --transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Background layers */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: radial-gradient(ellipse at 20% 50%, rgba(155, 124, 252, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(0, 229, 255, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(255, 94, 156, 0.04) 0%, transparent 50%);
+        }
+
+        .grid-mesh {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: meshMove 12s infinite alternate ease-in-out;
+        }
+
+        @keyframes meshMove {
+            0% {
+                opacity: 0.3;
+                background-position: 0 0;
+            }
+
+            100% {
+                opacity: 0.6;
+                background-position: 15px 15px;
+            }
+        }
+
+        .floating-orbs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.12;
+            animation: orbFloat 14s infinite alternate;
+        }
+
+        .orb1 {
+            width: 500px;
+            height: 500px;
+            background: var(--accent);
+            top: -200px;
+            left: -100px;
+            animation-duration: 18s;
+        }
+
+        .orb2 {
+            width: 400px;
+            height: 400px;
+            background: var(--accent2);
+            bottom: -150px;
+            right: -100px;
+            animation-duration: 20s;
+        }
+
+        .orb3 {
+            width: 350px;
+            height: 350px;
+            background: var(--pink);
+            top: 60%;
+            left: 50%;
+            animation-duration: 16s;
+        }
+
+        @keyframes orbFloat {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(40px, -30px) scale(1.1);
+            }
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: -0.3px;
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+            position: relative;
+            margin-bottom: 2.5rem;
+            display: inline-block;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -12px;
+            width: 70px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            color: var(--text-light);
+            max-width: 600px;
+            margin: -1rem auto 3rem;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(6, 6, 14, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0.9rem 0;
+            transition: 0.3s;
+        }
+
+        header.scrolled {
+            padding: 0.5rem 0;
+            background: rgba(6, 6, 14, 0.95);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.3rem;
+            text-decoration: none;
+            z-index: 1002;
+        }
+
+        .logo i {
+            color: var(--accent2);
+            font-size: 1.8rem;
+            filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.6));
+        }
+
+        /* Hamburger */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 44px;
+            height: 44px;
+            cursor: pointer;
+            z-index: 1002;
+            background: rgba(155, 124, 252, 0.15);
+            border: 1px solid rgba(155, 124, 252, 0.3);
+            border-radius: 10px;
+            padding: 8px;
+            transition: all 0.3s;
+        }
+
+        .menu-toggle:hover {
+            background: rgba(155, 124, 252, 0.25);
+            border-color: var(--accent2);
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 26px;
+            height: 3px;
+            background: var(--accent2);
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 3px;
+            box-shadow: 0 0 8px rgba(0, 229, 255, 0.6);
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.8rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+            font-size: 0.95rem;
+            position: relative;
+        }
+
+        nav a:not(.btn-nav):after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent2);
+            transition: 0.3s;
+        }
+
+        nav a:not(.btn-nav):hover:after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: var(--accent2);
+        }
+
+        .btn-nav {
+            background: var(--gradient);
+            padding: 0.65rem 1.8rem;
+            border-radius: 40px;
+            color: #fff !important;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            box-shadow: 0 4px 15px rgba(155, 124, 252, 0.35);
+            display: inline-block;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .btn-nav:hover {
+            box-shadow: 0 8px 25px rgba(0, 229, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 85%;
+                max-width: 340px;
+                height: 100vh;
+                height: 100dvh;
+                background: rgba(13, 13, 32, 0.98);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                padding: 6rem 2rem 2rem;
+                transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+                z-index: 1001;
+                box-shadow: -15px 0 40px rgba(0, 0, 0, 0.6);
+                overflow-y: auto;
+                border-left: 1px solid var(--border);
+            }
+
+            nav.active {
+                right: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.3rem;
+            }
+
+            nav ul li a {
+                display: block;
+                padding: 0.9rem 1rem;
+                border-radius: 10px;
+                font-size: 1.05rem;
+            }
+
+            nav ul li a:hover {
+                background: rgba(155, 124, 252, 0.1);
+            }
+
+            nav ul li a.btn-nav {
+                margin-top: 0.8rem;
+                text-align: center;
+                padding: 0.9rem 1.5rem;
+            }
+
+            .logo {
+                font-size: 1.1rem;
+            }
+
+            .logo i {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .logo span {
+                font-size: 0.9rem;
+            }
+
+            .menu-toggle {
+                width: 38px;
+                height: 38px;
+                padding: 6px;
+            }
+
+            .menu-toggle span {
+                width: 22px;
+                height: 2.5px;
+            }
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Page banner */
+        .page-banner {
+            padding: 10rem 0 4rem;
+            text-align: center;
+            background: rgba(6, 6, 14, 0.3);
+        }
+
+        .page-banner p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Why grid (enhanced) */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+
+        @media (max-width: 400px) {
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .why-item {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2.2rem 1.8rem;
+            transition: 0.35s;
+            text-align: center;
+        }
+
+        .why-item:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent2);
+            box-shadow: 0 20px 40px rgba(0, 229, 255, 0.1);
+        }
+
+        .why-icon {
+            font-size: 2.2rem;
+            color: var(--accent2);
+            margin-bottom: 1.2rem;
+            display: block;
+        }
+
+        .why-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.7rem;
+        }
+
+        .why-item p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Comparison table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1.2rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison-table th {
+            background: rgba(155, 124, 252, 0.1);
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .comparison-table td {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table .check {
+            color: var(--accent2);
+        }
+
+        .comparison-table .cross {
+            color: var(--text-light);
+            opacity: 0.5;
+        }
+
+        @media (max-width: 600px) {
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 0.8rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* CTA */
+        .cta-section {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            margin: 0 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .cta-section {
+                padding: 3rem 1.5rem;
+                margin: 0 0.5rem;
+            }
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.9rem 2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            letter-spacing: 0.2px;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: #fff;
+            box-shadow: 0 8px 25px rgba(155, 124, 252, 0.5);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 229, 255, 0.5);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--accent2);
+            color: var(--accent2);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: var(--accent2);
+            color: #000;
+            box-shadow: 0 8px 25px rgba(0, 229, 255, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 3rem 0 1.5rem;
+            color: var(--text-light);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 400px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        footer h3 {
+            color: #fff;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        footer a {
+            color: var(--text-light);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: 0.3s;
+            font-size: 0.9rem;
+        }
+
+        footer a:hover {
+            color: var(--accent2);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border);
+            padding-top: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        @media (max-width: 500px) {
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 0.6s ease-out;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="animated-bg"></div>
+    <div class="grid-mesh"></div>
+    <div class="floating-orbs">
+        <div class="orb orb1"></div>
+        <div class="orb orb2"></div>
+        <div class="orb orb3"></div>
+    </div>
+
+    <header id="header">
+        <div class="header-inner">
+            <a href="index.html" class="logo"><i class="fas fa-shield-haltered"></i><span>Tevex Prime Guard</span></a>
+            <div class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span>
+            </div>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="why-us.html" style="color:var(--accent2);">Why Us</a></li>
+                    <li><a href="testimonials.html">Testimonials</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html" class="btn-nav"><i class="fas fa-lock"></i> Client Portal</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="overlay" id="overlay"></div>
+
+    <main>
+        <section class="page-banner">
+            <div class="container reveal">
+                <h1>Why Choose Tevex Prime Guard</h1>
+                <p>The difference is in the details — discover why the world's elite trust us with their most valuable
+                    assets.</p>
+            </div>
+        </section>
+
+        <!-- Key Advantages -->
+        <section>
+            <div class="container">
+                <h2>Unmatched Advantages</h2>
+                <div class="why-grid reveal">
+                    <div class="why-item">
+                        <span class="why-icon"><i class="fas fa-fingerprint"></i></span>
+                        <h3>Biometric Multi‑Factor Auth</h3>
+                        <p>Retina, fingerprint, and voice recognition ensure no single point of failure — only you can
+                            access your vault.</p>
+                    </div>
+                    <div class="why-item">
+                        <span class="why-icon"><i class="fas fa-user-shield"></i></span>
+                        <h3>Veteran Security Teams</h3>
+                        <p>All personnel are ex‑military or law enforcement, rigorously trained in asset protection and
+                            emergency response.</p>
+                    </div>
+                    <div class="why-item">
+                        <span class="why-icon"><i class="fas fa-shield-haltered"></i></span>
+                        <h3>Seismic‑Rated Vaults</h3>
+                        <p>Engineered to withstand earthquakes, floods, and sustained forced entry attempts — your
+                            assets remain safe.</p>
+                    </div>
+                    <div class="why-item">
+                        <span class="why-icon"><i class="fas fa-cloud"></i></span>
+                        <h3>Redundant Power & Network</h3>
+                        <p>Multiple backup generators and satellite links guarantee 100% uptime, even in worst-case
+                            scenarios.</p>
+                    </div>
+                    <div class="why-item">
+                        <span class="why-icon"><i class="fas fa-clock"></i></span>
+                        <h3>24/7 Concierge Access</h3>
+                        <p>Schedule visits anytime — our private client managers are always on call for you, day or
+                            night.</p>
+                    </div>
+                    <div class="why-item">
+                        <span class="why-icon"><i class="fas fa-file-contract"></i></span>
+                        <h3>Full Regulatory Compliance</h3>
+                        <p>ISO 27001, SOC 2 Type II, and GDPR compliant — your data and assets are protected to the
+                            highest global standards.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison Table -->
+        <section>
+            <div class="container reveal">
+                <h2>How We Compare</h2>
+                <p class="section-subtitle">See why Tevex Prime Guard stands alone in the industry</p>
+                <div style="overflow-x:auto;">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Tevex Prime Guard</th>
+                                <th>Traditional Banks</th>
+                                <th>Other Private Vaults</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Biometric Access</td>
+                                <td class="check"><i class="fas fa-check-circle"></i> Multi-factor</td>
+                                <td class="cross"><i class="fas fa-times-circle"></i> Limited</td>
+                                <td class="cross"><i class="fas fa-times-circle"></i> Basic</td>
+                            </tr>
+                            <tr>
+                                <td>24/7 Availability</td>
+                                <td class="check"><i class="fas fa-check-circle"></i> Yes</td>
+                                <td class="cross"><i class="fas fa-times-circle"></i> Business hours</td>
+                                <td class="check"><i class="fas fa-check-circle"></i> Often</td>
+                            </tr>
+                            <tr>
+                                <td>Armed Personnel</td>
+                                <td class="check"><i class="fas fa-check-circle"></i> Ex-military</td>
+                                <td class="cross"><i class="fas fa-times-circle"></i> Unarmed</td>
+                                <td class="cross"><i class="fas fa-times-circle"></i> Varies</td>
+                            </tr>
+                            <tr>
+                                <td>Seismic Rating</td>
+                                <td class="check"><i class="fas fa-check-circle"></i> Yes</td>
+                                <td class="cross"><i class="fas fa-times-circle"></i> No</td>
+                                <td class="cross"><i class="fas fa-times-circle"></i> Rare</td>
+                            </tr>
+                            <tr>
+                                <td>Cyber Vault</td>
+                                <td class="check"><i class="fas fa-check-circle"></i> Included</td>
+                                <td class="cross"><i class="fas fa-times-circle"></i> No</td>
+                                <td class="cross"><i class="fas fa-times-circle"></i> Extra cost</td>
+                            </tr>
+                            <tr>
+                                <td>Insurance (Full Value)</td>
+                                <td class="check"><i class="fas fa-check-circle"></i> Lloyd's of London</td>
+                                <td class="cross"><i class="fas fa-times-circle"></i> Limited</td>
+                                <td class="cross"><i class="fas fa-times-circle"></i> Limited</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section>
+            <div class="container">
+                <div class="cta-section reveal">
+                    <h2>Experience the Tevex Difference</h2>
+                    <p style="color:var(--text-light); max-width:500px; margin:0 auto 2rem;">Join the discerning clients
+                        who refuse to compromise on security.</p>
+                    <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+                        <a href="contact.html" class="btn btn-primary"><i class="fas fa-envelope"></i> Request
+                            Consultation</a>
+                        <a href="services.html" class="btn btn-outline"><i class="fas fa-list"></i> View Services</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3><i class="fas fa-shield-haltered"></i> Tevex Prime Guard</h3>
+                    <p style="color:var(--text-light); font-size:0.9rem;">Industry leader in high‑security storage since
+                        1997.</p>
+                </div>
+                <div>
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="services.html">Services</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div>
+                    <h3>Services</h3>
+                    <a href="services.html">Private Vaults</a>
+                    <a href="services.html">Safe Deposit Boxes</a>
+                    <a href="services.html">Secure Transport</a>
+                    <a href="services.html">Cyber Vault</a>
+                </div>
+                <div>
+                    <h3>Contact</h3>
+                    <p style="font-size:0.9rem;">info@tevexprimeguards.us</p>
+                    <p style="font-size:0.9rem;">+44 (405) 303-7308</p>
+                    <p style="font-size:0.9rem;">505 Talbot St #909, London, ON</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 1997 – 2026 Tevex Prime Guard Security. All rights reserved.</p>
+                <div>
+                    <a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            const menuToggle = document.getElementById('menuToggle');
+            const mainNav = document.getElementById('mainNav');
+            const overlay = document.getElementById('overlay');
+            const body = document.body;
+
+            function openMenu() {
+                mainNav.classList.add('active');
+                overlay.classList.add('active');
+                menuToggle.classList.add('active');
+                body.style.overflow = 'hidden';
+            }
+            function closeMenu() {
+                mainNav.classList.remove('active');
+                overlay.classList.remove('active');
+                menuToggle.classList.remove('active');
+                body.style.overflow = '';
+            }
+
+            menuToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                mainNav.classList.contains('active') ? closeMenu() : openMenu();
+            });
+            overlay.addEventListener('click', closeMenu);
+            document.querySelectorAll('nav a').forEach(link => link.addEventListener('click', closeMenu));
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && mainNav.classList.contains('active')) closeMenu();
+            });
+
+            window.addEventListener('scroll', () => {
+                document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+            });
+
+            // Scroll reveal
+            const revealElements = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -30px 0px' });
+            revealElements.forEach(el => observer.observe(el));
+        })();
+    </script>
+</body>
+
+</html>

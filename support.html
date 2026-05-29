@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Support – Tevex Prime Guard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="https://pbs.twimg.com/media/GlUVXk7XoAA_fbl?format=jpg&name=small">
+    <style>
+        :root {
+            --bg: #06060e;
+            --surface: #0d0d20;
+            --card: #161630;
+            --border: rgba(255, 255, 255, 0.08);
+            --text: #e0e0f0;
+            --text-light: #9999bb;
+            --accent: #9b7cfc;
+            --accent2: #00e5ff;
+            --pink: #ff5e9c;
+            --radius: 18px;
+            --shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+            --glass: rgba(14, 14, 35, 0.65);
+            --gradient: linear-gradient(135deg, var(--accent), var(--accent2));
+            --transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --sidebar-width: 260px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated backgrounds */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: radial-gradient(ellipse at 20% 50%, rgba(155, 124, 252, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(0, 229, 255, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(255, 94, 156, 0.04) 0%, transparent 50%);
+        }
+
+        .grid-mesh {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: meshMove 12s infinite alternate ease-in-out;
+        }
+
+        @keyframes meshMove {
+            0% {
+                opacity: 0.3;
+                background-position: 0 0;
+            }
+
+            100% {
+                opacity: 0.6;
+                background-position: 15px 15px;
+            }
+        }
+
+        .floating-orbs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.1;
+            animation: orbFloat 14s infinite alternate;
+        }
+
+        .orb1 {
+            width: 400px;
+            height: 400px;
+            background: var(--accent);
+            top: -150px;
+            left: -80px;
+            animation-duration: 18s;
+        }
+
+        .orb2 {
+            width: 350px;
+            height: 350px;
+            background: var(--accent2);
+            bottom: -120px;
+            right: -80px;
+            animation-duration: 20s;
+        }
+
+        @keyframes orbFloat {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(30px, -20px) scale(1.1);
+            }
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #fff;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        h1 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(6, 6, 14, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0.9rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.3rem;
+            text-decoration: none;
+            z-index: 1002;
+        }
+
+        .logo i {
+            color: var(--accent2);
+            font-size: 1.8rem;
+            filter: drop-shadow(0 0 10px var(--accent2));
+        }
+
+        /* Enhanced mobile menu toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 44px;
+            height: 44px;
+            cursor: pointer;
+            z-index: 1002;
+            background: rgba(155, 124, 252, 0.15);
+            border: 1px solid rgba(155, 124, 252, 0.3);
+            border-radius: 10px;
+            padding: 8px;
+            transition: all 0.3s;
+        }
+
+        .menu-toggle:hover {
+            background: rgba(155, 124, 252, 0.25);
+            border-color: var(--accent2);
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 26px;
+            height: 3px;
+            background: var(--accent2);
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 3px;
+            box-shadow: 0 0 8px rgba(0, 229, 255, 0.6);
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-dropdown {
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(155, 124, 252, 0.15);
+            border-radius: 30px;
+            border: 1px solid rgba(155, 124, 252, 0.2);
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            min-width: 180px;
+            padding: 0.5rem 0;
+            margin-top: 0.5rem;
+        }
+
+        .user-dropdown.active .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.6rem 1.2rem;
+            color: var(--text-light);
+            text-decoration: none;
+        }
+
+        .dropdown-menu a:hover {
+            color: var(--accent2);
+            background: rgba(155, 124, 252, 0.05);
+        }
+
+        /* Layout */
+        .dashboard-container {
+            display: flex;
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+            width: 100%;
+        }
+
+        @media (max-width: 991px) {
+            .dashboard-container {
+                flex-direction: column;
+            }
+        }
+
+        /* Sidebar */
+        .dashboard-sidebar {
+            flex: 0 0 var(--sidebar-width);
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            height: fit-content;
+        }
+
+        @media (max-width: 991px) {
+            .dashboard-sidebar {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                bottom: 0;
+                z-index: 1001;
+                width: 85%;
+                max-width: 320px;
+                transition: 0.4s;
+                border-radius: 0;
+                box-shadow: 5px 0 30px rgba(0, 0, 0, 0.5);
+            }
+
+            .dashboard-sidebar.active {
+                left: 0;
+            }
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+        }
+
+        .sidebar-overlay.active {
+            display: block;
+        }
+
+        .dashboard-nav ul {
+            list-style: none;
+        }
+
+        .dashboard-nav ul li {
+            margin-bottom: 0.3rem;
+        }
+
+        .dashboard-nav ul li a {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem 1.2rem;
+            border-radius: 10px;
+            color: var(--text-light);
+            text-decoration: none;
+            border-left: 3px solid transparent;
+        }
+
+        .dashboard-nav ul li.active a,
+        .dashboard-nav ul li a:hover {
+            background: rgba(155, 124, 252, 0.1);
+            color: #fff;
+            border-left-color: var(--accent2);
+        }
+
+        .dashboard-main {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .section {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: 0.3s;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card:hover {
+            border-color: var(--accent2);
+            transform: translateY(-2px);
+        }
+
+        .contact-card i {
+            font-size: 1.8rem;
+            color: var(--accent2);
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent2);
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.8rem;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(155, 124, 252, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 229, 255, 0.3);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--accent2);
+            color: var(--accent2);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: var(--accent2);
+            color: #000;
+        }
+
+        .faq-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 0.8rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .faq-question i {
+            transition: 0.3s;
+            color: var(--accent2);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 1.5rem;
+            color: var(--text-light);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 150px;
+            padding-bottom: 1rem;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .dashboard-footer {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 1.5rem 0;
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="animated-bg"></div>
+    <div class="grid-mesh"></div>
+    <div class="floating-orbs">
+        <div class="orb orb1"></div>
+        <div class="orb orb2"></div>
+    </div>
+
+    <script>
+        if (!sessionStorage.getItem('tevex_logged_in')) {
+            window.location.href = 'login.html';
+        }
+    </script>
+
+    <header>
+        <div class="header-inner">
+            <div class="menu-toggle" id="menuToggle" aria-label="Toggle sidebar"><span></span><span></span><span></span>
+            </div>
+            <a href="dashboard.html" class="logo"><i class="fas fa-shield-haltered"></i><span>Tevex Prime
+                    Guard</span></a>
+            <div class="user-menu">
+                <div class="user-dropdown" id="userDropdown">
+                    <div class="user-avatar" id="userAvatar">G</div>
+                    <span id="userDropdownName">User</span>
+                    <i class="fas fa-chevron-down"></i>
+                    <div class="dropdown-menu">
+                        <a href="account-settings.html"><i class="fas fa-user"></i> Profile</a>
+                        <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="dashboard-container">
+        <aside class="dashboard-sidebar" id="dashboardSidebar">
+            <nav class="dashboard-nav">
+                <ul>
+                    <li><a href="dashboard.html"><i class="fas fa-vault"></i> My Vault</a></li>
+                    <li><a href="access-history.html"><i class="fas fa-history"></i> Access History</a></li>
+                    <li><a href="security-report.html"><i class="fas fa-file-alt"></i> Security Report</a></li>
+                    <li><a href="account-settings.html"><i class="fas fa-user-cog"></i> Account Settings</a></li>
+                    <li class="active"><a href="support.html"><i class="fas fa-headset"></i> Support</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="dashboard-main">
+            <h1>24/7 Concierge Support</h1>
+
+            <!-- Contact Information Cards -->
+            <section class="section">
+                <h2>Contact Our Team</h2>
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <strong>Email</strong><br>
+                        <span style="color:var(--text-light);">support@tevexprimeguards.us</span>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <strong>Phone</strong><br>
+                        <span style="color:var(--text-light);">+44 (405) 303-7308</span>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <strong>Response Time</strong><br>
+                        <span style="color:var(--text-light);">Within 15 minutes (24/7)</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Submit a Ticket -->
+            <section class="section">
+                <h2>Submit a Support Ticket</h2>
+                <form
+                    onsubmit="event.preventDefault(); alert('Ticket submitted! Our team will respond shortly. (demo)'); this.reset();">
+                    <input type="text" class="form-control" placeholder="Subject" required>
+                    <select class="form-control" required>
+                        <option value="">Category</option>
+                        <option>Vault Access</option>
+                        <option>Billing / Insurance</option>
+                        <option>Technical Support</option>
+                        <option>General Inquiry</option>
+                    </select>
+                    <textarea class="form-control" rows="4" placeholder="Describe your issue..." required></textarea>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Send
+                        Ticket</button>
+                </form>
+            </section>
+
+            <!-- Frequently Asked Questions -->
+            <section class="section">
+                <h2>Quick Answers</h2>
+                <div class="faq-item" onclick="this.classList.toggle('active')">
+                    <div class="faq-question">
+                        <span>How do I schedule a vault visit?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Use the "Schedule Visit" button on your dashboard or contact our concierge directly. We'll
+                        arrange a private appointment at your convenience.
+                    </div>
+                </div>
+                <div class="faq-item" onclick="this.classList.toggle('active')">
+                    <div class="faq-question">
+                        <span>What identification is required for access?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Biometric verification plus a government‑issued ID and unique PIN. No single factor alone grants
+                        access.
+                    </div>
+                </div>
+                <div class="faq-item" onclick="this.classList.toggle('active')">
+                    <div class="faq-question">
+                        <span>How do I update my insurance coverage?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Contact our support team or your dedicated client manager. We'll adjust your policy and provide
+                        updated documentation within 24 hours.
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="dashboard-footer">
+        <p>&copy; 2025 Tevex Prime Guard Security. ISO 27001 Certified | SOC 2 Type II Compliant</p>
+    </footer>
+
+    <script>
+        // ========== USER PERSONALISATION ==========
+        const storedUser = sessionStorage.getItem('tevex_username') || 'client';
+        const userProfiles = {
+            'Geraldcoburn40': { fullName: 'Gerald Allen Coburn', initials: 'GC' },
+            'client': { fullName: 'Demo Client', initials: 'DC' }
+        };
+        const profile = userProfiles[storedUser] || { fullName: 'Client', initials: 'CL' };
+        document.getElementById('userAvatar').textContent = profile.initials;
+        document.getElementById('userDropdownName').textContent = profile.fullName;
+
+        // ========== MOBILE SIDEBAR ==========
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('dashboardSidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+            menuToggle.classList.remove('active');
+        });
+        document.querySelectorAll('.dashboard-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 991) {
+                    sidebar.classList.remove('active');
+                    overlay.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                }
+            });
+        });
+
+        // ========== USER DROPDOWN ==========
+        document.getElementById('userDropdown').addEventListener('click', function (e) {
+            this.classList.toggle('active');
+            e.stopPropagation();
+        });
+        document.addEventListener('click', () => document.getElementById('userDropdown').classList.remove('active'));
+
+        // ========== LOGOUT ==========
+        document.getElementById('logoutBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            sessionStorage.clear();
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+
+</html>

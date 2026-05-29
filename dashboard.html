@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Your Secure Vault – Tevex Prime Guard Security</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="https://pbs.twimg.com/media/GlUVXk7XoAA_fbl?format=jpg&name=small">
+    <style>
+        :root {
+            --bg: #06060e;
+            --surface: #0d0d20;
+            --card: #161630;
+            --border: rgba(255, 255, 255, 0.08);
+            --text: #e0e0f0;
+            --text-light: #9999bb;
+            --accent: #9b7cfc;
+            --accent2: #00e5ff;
+            --pink: #ff5e9c;
+            --radius: 18px;
+            --shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+            --glass: rgba(14, 14, 35, 0.65);
+            --gradient: linear-gradient(135deg, var(--accent), var(--accent2));
+            --transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --sidebar-width: 260px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated background layers (matching public pages) */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: radial-gradient(ellipse at 20% 50%, rgba(155, 124, 252, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(0, 229, 255, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(255, 94, 156, 0.04) 0%, transparent 50%);
+        }
+
+        .grid-mesh {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: meshMove 12s infinite alternate ease-in-out;
+        }
+
+        @keyframes meshMove {
+            0% {
+                opacity: 0.3;
+                background-position: 0 0;
+            }
+
+            100% {
+                opacity: 0.6;
+                background-position: 15px 15px;
+            }
+        }
+
+        .floating-orbs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.1;
+            animation: orbFloat 14s infinite alternate;
+        }
+
+        .orb1 {
+            width: 400px;
+            height: 400px;
+            background: var(--accent);
+            top: -150px;
+            left: -80px;
+            animation-duration: 18s;
+        }
+
+        .orb2 {
+            width: 350px;
+            height: 350px;
+            background: var(--accent2);
+            bottom: -120px;
+            right: -80px;
+            animation-duration: 20s;
+        }
+
+        @keyframes orbFloat {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(30px, -20px) scale(1.1);
+            }
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            color: #fff;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        h1 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(6, 6, 14, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0.9rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.3rem;
+            text-decoration: none;
+            z-index: 1002;
+        }
+
+        .logo i {
+            color: var(--accent2);
+            font-size: 1.8rem;
+            filter: drop-shadow(0 0 10px var(--accent2));
+        }
+
+        /* Mobile menu toggle – same as other pages */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 44px;
+            height: 44px;
+            cursor: pointer;
+            z-index: 1002;
+            background: rgba(155, 124, 252, 0.15);
+            border: 1px solid rgba(155, 124, 252, 0.3);
+            border-radius: 10px;
+            padding: 8px;
+            transition: all 0.3s;
+        }
+
+        .menu-toggle:hover {
+            background: rgba(155, 124, 252, 0.25);
+            border-color: var(--accent2);
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 26px;
+            height: 3px;
+            background: var(--accent2);
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 3px;
+            box-shadow: 0 0 8px rgba(0, 229, 255, 0.6);
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-dropdown {
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(155, 124, 252, 0.15);
+            border-radius: 30px;
+            border: 1px solid rgba(155, 124, 252, 0.2);
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            min-width: 180px;
+            padding: 0.5rem 0;
+            margin-top: 0.5rem;
+        }
+
+        .user-dropdown.active .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.6rem 1.2rem;
+            color: var(--text-light);
+            text-decoration: none;
+        }
+
+        .dropdown-menu a:hover {
+            color: var(--accent2);
+            background: rgba(155, 124, 252, 0.05);
+        }
+
+        /* Layout */
+        .dashboard-container {
+            display: flex;
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+            width: 100%;
+        }
+
+        @media (max-width: 991px) {
+            .dashboard-container {
+                flex-direction: column;
+            }
+        }
+
+        /* Sidebar */
+        .dashboard-sidebar {
+            flex: 0 0 var(--sidebar-width);
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            height: fit-content;
+        }
+
+        @media (max-width: 991px) {
+            .dashboard-sidebar {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                bottom: 0;
+                z-index: 1001;
+                width: 85%;
+                max-width: 320px;
+                transition: 0.4s;
+                border-radius: 0;
+                box-shadow: 5px 0 30px rgba(0, 0, 0, 0.5);
+            }
+
+            .dashboard-sidebar.active {
+                left: 0;
+            }
+        }
+
+        .dashboard-nav ul {
+            list-style: none;
+        }
+
+        .dashboard-nav ul li {
+            margin-bottom: 0.3rem;
+        }
+
+        .dashboard-nav ul li a {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem 1.2rem;
+            border-radius: 10px;
+            color: var(--text-light);
+            text-decoration: none;
+            border-left: 3px solid transparent;
+        }
+
+        .dashboard-nav ul li.active a,
+        .dashboard-nav ul li a:hover {
+            background: rgba(155, 124, 252, 0.1);
+            color: #fff;
+            border-left-color: var(--accent2);
+        }
+
+        .sidebar-footer {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+        }
+
+        .sidebar-overlay.active {
+            display: block;
+        }
+
+        /* Main */
+        .dashboard-main {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .section {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Cards */
+        .vault-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .vault-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            position: relative;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .vault-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent), var(--accent2));
+        }
+
+        .vault-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent2);
+        }
+
+        .vault-card-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(155, 124, 252, 0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent2);
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .vault-card-value {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.2;
+        }
+
+        .vault-card-label {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .vault-items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .vault-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .vault-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent2);
+        }
+
+        .vault-item-image {
+            width: 100%;
+            height: 130px;
+            object-fit: cover;
+        }
+
+        .vault-item-details {
+            padding: 1rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .vault-item-details h3 {
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .vault-item-info {
+            display: flex;
+            gap: 0.4rem;
+            margin-bottom: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .vault-item-info span {
+            background: rgba(155, 124, 252, 0.15);
+            padding: 0.15rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: var(--accent2);
+        }
+
+        .btn-sm {
+            padding: 0.5rem 1.2rem;
+            font-size: 0.8rem;
+            border-radius: 20px;
+            margin-top: auto;
+            align-self: flex-start;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.8rem;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(155, 124, 252, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(155, 124, 252, 0.15);
+            color: #fff;
+            border: 1px solid rgba(155, 124, 252, 0.3);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--accent2);
+            color: var(--accent2);
+            background: transparent;
+        }
+
+        .btn-primary:hover,
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 229, 255, 0.3);
+        }
+
+        .btn-outline:hover {
+            background: var(--accent2);
+            color: #000;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent2);
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            width: 90%;
+            max-width: 700px;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+            background: none;
+            border: none;
+        }
+
+        .modal-close:hover {
+            color: var(--accent2);
+        }
+
+        .asset-detail-img {
+            width: 100%;
+            max-height: 250px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .asset-specs {
+            list-style: none;
+            padding: 0;
+        }
+
+        .asset-specs li {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-light);
+        }
+
+        .asset-specs li strong {
+            color: #fff;
+        }
+
+        .security-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .security-badge {
+            background: rgba(0, 229, 255, 0.1);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--accent2);
+        }
+
+        .inactivity-warning {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            color: #f59e0b;
+            padding: 1rem;
+            border-radius: var(--radius);
+            display: none;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .dashboard-footer {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 1.5rem 0;
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Animated backgrounds -->
+    <div class="animated-bg"></div>
+    <div class="grid-mesh"></div>
+    <div class="floating-orbs">
+        <div class="orb orb1"></div>
+        <div class="orb orb2"></div>
+    </div>
+
+    <script>
+        if (!sessionStorage.getItem('tevex_logged_in')) {
+            window.location.href = 'login.html';
+        }
+    </script>
+
+    <header>
+        <div class="header-inner">
+            <div class="menu-toggle" id="menuToggle" aria-label="Toggle sidebar"><span></span><span></span><span></span>
+            </div>
+            <a href="dashboard.html" class="logo"><i class="fas fa-shield-haltered"></i><span>Tevex Prime
+                    Guard</span></a>
+            <div class="user-menu">
+                <div class="user-dropdown" id="userDropdown">
+                    <div class="user-avatar" id="userAvatar">G</div>
+                    <span id="userDropdownName">User</span>
+                    <i class="fas fa-chevron-down"></i>
+                    <div class="dropdown-menu">
+                        <a href="account-settings.html"><i class="fas fa-user"></i> Profile</a>
+                        <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="dashboard-container">
+        <aside class="dashboard-sidebar" id="dashboardSidebar">
+            <nav class="dashboard-nav">
+                <ul>
+                    <li class="active"><a href="dashboard.html"><i class="fas fa-vault"></i> My Vault</a></li>
+                    <li><a href="access-history.html"><i class="fas fa-history"></i> Access History</a></li>
+                    <li><a href="#" id="scheduleVisitSidebar"><i class="fas fa-calendar-check"></i> Schedule Visit</a>
+                    </li>
+                    <li><a href="security-report.html"><i class="fas fa-file-alt"></i> Security Report</a></li>
+                    <li><a href="account-settings.html"><i class="fas fa-user-cog"></i> Account Settings</a></li>
+                    <li><a href="support.html"><i class="fas fa-headset"></i> Support</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#" id="sidebarLogout" class="btn-outline" style="display:block; text-align:center;">Logout</a>
+            </div>
+        </aside>
+
+        <main class="dashboard-main">
+            <div
+                style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; gap:1rem;">
+                <h1>Your Secure Vault</h1>
+                <div style="display:flex; gap:0.8rem; flex-wrap:wrap;">
+                    <button class="btn btn-secondary" onclick="window.print()"><i class="fas fa-print"></i>
+                        Print</button>
+                    <button class="btn btn-primary" id="scheduleVisitBtn"><i class="fas fa-calendar-plus"></i> Schedule
+                        Visit</button>
+                    <button class="btn btn-outline" id="exportReportBtn"><i class="fas fa-download"></i> Export</button>
+                </div>
+            </div>
+
+            <!-- Overview Cards -->
+            <div class="vault-overview">
+                <div class="vault-card">
+                    <div class="vault-card-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div>
+                        <div class="vault-card-label">Security</div>
+                        <div class="vault-card-value">Optimal</div>
+                    </div>
+                </div>
+                <div class="vault-card">
+                    <div class="vault-card-icon"><i class="fas fa-thermometer-half"></i></div>
+                    <div>
+                        <div class="vault-card-label">Temperature</div>
+                        <div class="vault-card-value" id="currentTemp">68°F</div>
+                    </div>
+                </div>
+                <div class="vault-card">
+                    <div class="vault-card-icon"><i class="fas fa-tint"></i></div>
+                    <div>
+                        <div class="vault-card-label">Humidity</div>
+                        <div class="vault-card-value" id="currentHumidity">45%</div>
+                    </div>
+                </div>
+                <div class="vault-card">
+                    <div class="vault-card-icon"><i class="fas fa-clock"></i></div>
+                    <div>
+                        <div class="vault-card-label">Last Visit</div>
+                        <div class="vault-card-value" id="lastVisit">-</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="inactivity-warning" id="inactivityWarning">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>You will be logged out in <span id="warningCountdown">10</span> seconds due to inactivity.</span>
+                <button class="btn btn-outline" id="extendSessionBtn">Extend</button>
+            </div>
+
+            <section class="section">
+                <h2>Your Secured Assets</h2>
+                <div class="vault-items-grid" id="vaultItemsGrid"></div>
+            </section>
+
+            <section class="section">
+                <h2>Recent Activity</h2>
+                <div id="recentActivity">
+                    <div style="display:flex; gap:1rem; padding:0.8rem 0; border-bottom:1px solid var(--border);">
+                        <i class="fas fa-calendar-check" style="color:var(--accent2);"></i>
+                        <div><strong>Visit Confirmed</strong><br><small>March 10, 2025 · Confirmation
+                                #TPG-V-20250310</small></div>
+                    </div>
+                    <div style="display:flex; gap:1rem; padding:0.8rem 0; border-bottom:1px solid var(--border);">
+                        <i class="fas fa-fingerprint" style="color:var(--accent2);"></i>
+                        <div><strong>Vault Access</strong><br><small>Biometric entry – 45 minutes</small></div>
+                    </div>
+                    <div style="display:flex; gap:1rem; padding:0.8rem 0;">
+                        <i class="fas fa-sliders-h" style="color:var(--accent2);"></i>
+                        <div><strong>Climate Adjusted</strong><br><small>Humidity set to 45%</small></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Insurance Coverage</h2>
+                <div style="display:flex; flex-wrap:wrap; gap:2rem;">
+                    <div>
+                        <p style="color:var(--text-light);">Policy: <strong id="policyNumber">-</strong></p>
+                        <p style="color:var(--text-light);">Coverage: <strong id="totalCoverage">-</strong></p>
+                    </div>
+                    <div>
+                        <p style="color:var(--text-light);">Renewal: <strong id="renewalDate">-</strong></p>
+                        <p style="color:var(--text-light);">Premium: <strong id="annualPremium">-</strong></p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Asset Details Modal -->
+    <div class="modal" id="assetDetailModal">
+        <div class="modal-content">
+            <span class="modal-close" id="closeAssetModal">&times;</span>
+            <h2 id="assetModalTitle">Asset Details</h2>
+            <img id="assetModalImage" src="" alt="" class="asset-detail-img">
+            <p id="assetModalDescription" style="color:var(--text-light); margin-bottom:1.5rem;"></p>
+            <h3>Specifications</h3>
+            <ul class="asset-specs" id="assetModalSpecs"></ul>
+            <h3 style="margin-top:1.5rem;">Security Features</h3>
+            <div class="security-features" id="assetModalSecurity"></div>
+            <div style="margin-top:1.5rem;">
+                <h3>Asset History</h3>
+                <ul class="asset-specs" id="assetModalHistory"></ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Schedule Visit Modal -->
+    <div class="modal" id="scheduleModal">
+        <div class="modal-content">
+            <span class="modal-close" id="closeScheduleModal">&times;</span>
+            <h2>Schedule Vault Visit</h2>
+            <form id="scheduleForm">
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                    <div><label style="color:var(--text-light);">Date</label><input type="date" id="visitDate"
+                            class="form-control" required></div>
+                    <div><label style="color:var(--text-light);">Time</label><input type="time" id="visitTime"
+                            class="form-control" required></div>
+                </div>
+                <div style="margin-top:1rem;">
+                    <label style="color:var(--text-light);">Purpose</label>
+                    <select id="visitPurpose" class="form-control" required>
+                        <option value="">Select</option>
+                        <option>Inspection</option>
+                        <option>Withdrawal</option>
+                        <option>Deposit</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary" style="margin-top:1.5rem;">Confirm Visit</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="dashboard-footer">
+        <p>&copy; 2025 Tevex Prime Guard Security. ISO 27001 Certified | SOC 2 Type II Compliant</p>
+    </footer>
+
+    <script>
+        // ========== USER PERSONALISATION ==========
+        const currentUser = sessionStorage.getItem('tevex_username') || 'client';
+        const userProfiles = {
+            'Geraldcoburn40': {
+                fullName: 'Gerald Allen Coburn',
+                initials: 'GC',
+                assets: [
+                    { id: 1, title: 'Alluvial Gold Bars', img: 'https://www.usgoldbureau.com/media/wysiwyg/home/usgb/gold-bars-img.jpg', info: '96 Kg · Vault A' },
+                    { id: 2, title: 'Uncut Diamond', img: 'https://i.ytimg.com/vi/9gbUWX62v9Y/maxresdefault.jpg', info: '97 Carats · Case #D-7' },
+                    { id: 3, title: 'Painting Collection', img: 'https://museum.cornell.edu/wp-content/uploads/2023/02/Salon-940x590px.jpg', info: '29 Pieces · Vault C' },
+                    { id: 4, title: 'Ancient Sculptures', img: 'https://i.redd.it/pzus3xrfl8s51.jpg', info: '42 Pieces · Case #D-17' },
+                    { id: 5, title: 'German Spotty Onionskin Marble Sculpture', img: 'https://oldraremarbles.com/wp-content/uploads/2020/07/OnionSkins-1000w.jpg', info: 'Rare Collection · Vault F' }
+                ],
+                insurance: { policyNumber: 'TPG-PL-GC-4025', renewalDate: 'Jan 5, 2026', totalCoverage: '$25,000,000', annualPremium: '$125,000' }
+            },
+            'client': {
+                fullName: 'Demo Client',
+                initials: 'DC',
+                assets: [
+                    { id: 1, title: 'Demo Gold Bar', img: 'https://www.usgoldbureau.com/media/wysiwyg/home/usgb/gold-bars-img.jpg', info: '1 Kg · Demo' }
+                ],
+                insurance: { policyNumber: 'TPG-PL-DEMO', renewalDate: 'Dec 31, 2025', totalCoverage: '$1,000,000', annualPremium: '$5,000' }
+            }
+        };
+        const profile = userProfiles[currentUser] || userProfiles['client'];
+        document.getElementById('userAvatar').textContent = profile.initials;
+        document.getElementById('userDropdownName').textContent = profile.fullName;
+        document.getElementById('lastVisit').textContent = new Date().toLocaleDateString();
+        document.getElementById('policyNumber').textContent = profile.insurance.policyNumber;
+        document.getElementById('renewalDate').textContent = profile.insurance.renewalDate;
+        document.getElementById('totalCoverage').textContent = profile.insurance.totalCoverage;
+        document.getElementById('annualPremium').textContent = profile.insurance.annualPremium;
+
+        // ========== ASSET DETAILS DATA ==========
+        const assetDetails = {
+            1: {
+                title: "Alluvial Gold Bars",
+                image: "https://www.usgoldbureau.com/media/wysiwyg/home/usgb/gold-bars-img.jpg",
+                description: "High-purity alluvial gold bars (99.99% purity) stored in a climate-controlled, maximum security section with 24/7 monitoring.",
+                specs: [
+                    { label: "Total Weight", value: "96 Kilograms" },
+                    { label: "Purity", value: "99.99%" },
+                    { label: "Number of Bars", value: "32 bars (3kg each)" },
+                    { label: "Current Market Value", value: "$6,240,000" },
+                    { label: "Storage Section", value: "Vault A, Compartment 12" },
+                    { label: "Last Audited", value: "February 15, 2025" }
+                ],
+                security: ["Biometric access required", "24/7 video surveillance", "Weight sensors under storage", "Laser tripwire perimeter", "Dual-key access system"],
+                history: ["Deposited: January 15, 2002", "Last inspection: February 15, 2025", "Next scheduled audit: August 15, 2025"]
+            },
+            2: {
+                title: "Uncut Diamond",
+                image: "https://i.ytimg.com/vi/9gbUWX62v9Y/maxresdefault.jpg",
+                description: "A rare 97-carat uncut diamond discovered in the Mirny mine, Siberia. One of the largest uncut diamonds in private possession.",
+                specs: [
+                    { label: "Weight", value: "97 Carats" },
+                    { label: "Origin", value: "Mirny Mine, Siberia" },
+                    { label: "Estimated Value", value: "$12,000,000" },
+                    { label: "Storage Case", value: "Custom Titanium Security Case #D-7" },
+                    { label: "Last Inspection", value: "January 30, 2025" }
+                ],
+                security: ["Triple biometric verification", "Anti-vibration mounting", "Pressure-sensitive casing", "RFID tracking enabled", "Direct police line"],
+                history: ["Deposit: January 15, 2002", "Last gemological assessment: January 30, 2025", "Next certification: January 2026"]
+            },
+            3: {
+                title: "Painting Collection",
+                image: "https://museum.cornell.edu/wp-content/uploads/2023/02/Salon-940x590px.jpg",
+                description: "Collection of 29 valuable paintings from 18th-20th centuries, stored in a climate-controlled, light-regulated environment.",
+                specs: [
+                    { label: "Number of Pieces", value: "29 Paintings" },
+                    { label: "Era", value: "18th-20th Century" },
+                    { label: "Total Insured Value", value: "$8,750,000" },
+                    { label: "Storage Section", value: "Art Vault C, Racks 12-18" },
+                    { label: "Light Exposure", value: "< 50 lux (UV filtered)" }
+                ],
+                security: ["Climate-controlled environment", "UV-filtered lighting only", "Fire suppression: inert gas system", "24/7 environmental monitoring"],
+                history: ["Deposit: January 15, 2002", "Last full inspection: December 10, 2024", "Conservation scheduled: June 2025"]
+            },
+            4: {
+                title: "Ancient Sculptures",
+                image: "https://i.redd.it/pzus3xrfl8s51.jpg",
+                description: "Collection of 42 ancient Greek and Roman sculptures dating from 5th century BC to 3rd century AD. Each piece has customized mounting and preservation systems.",
+                specs: [
+                    { label: "Number of Pieces", value: "42 Sculptures" },
+                    { label: "Era", value: "5th Century BC - 3rd Century AD" },
+                    { label: "Total Insured Value", value: "$4,250,000" },
+                    { label: "Storage Section", value: "Special Exhibit Section, Historical Artifact" },
+                    { label: "Last Inspection", value: "January 30, 2025" }
+                ],
+                security: ["Triple biometric verification", "Anti-vibration mounting", "Pressure-sensitive casing", "RFID tracking enabled", "Direct police line"],
+                history: ["Deposit: January 15, 2002", "Last gemological assessment: January 30, 2025", "Next certification: January 2026"]
+            },
+            5: {
+                title: "German Spotty Onionskin Marble Sculpture",
+                image: "https://oldraremarbles.com/wp-content/uploads/2020/07/OnionSkins-1000w.jpg",
+                description: "Rare 19th-century German Spotty Onionskin Marble sculpture from the workshop of Friedrich G. Einwald. One of only three known examples in existence.",
+                specs: [
+                    { label: "Number of Pieces", value: "18 Sculptures" },
+                    { label: "Era", value: "19th Century" },
+                    { label: "Total Insured Value", value: "$3,550,000" },
+                    { label: "Storage Section", value: "Special Exhibit Section, Historical Artifact" },
+                    { label: "Light Exposure", value: "< 50 lux (UV filtered)" }
+                ],
+                security: ["Climate-controlled environment", "UV-filtered lighting only", "Fire suppression: inert gas system", "24/7 environmental monitoring"],
+                history: ["Deposit: January 15, 2002", "Last full inspection: December 10, 2024", "Conservation scheduled: June 2025"]
+            }
+        };
+
+        // ========== BUILD ASSET CARDS ==========
+        const vaultGrid = document.getElementById('vaultItemsGrid');
+        profile.assets.forEach(asset => {
+            const card = document.createElement('div');
+            card.className = 'vault-item';
+            card.innerHTML = `
+                <img src="${asset.img}" class="vault-item-image" alt="${asset.title}" loading="lazy">
+                <div class="vault-item-details">
+                    <h3>${asset.title}</h3>
+                    <div class="vault-item-info"><span>${asset.info}</span></div>
+                    <button class="btn btn-sm btn-outline view-details-btn" data-asset-id="${asset.id}">
+                        <i class="fas fa-search"></i> View Details
+                    </button>
+                </div>
+            `;
+            vaultGrid.appendChild(card);
+        });
+
+        // ========== VIEW DETAILS MODAL ==========
+        const assetDetailModal = document.getElementById('assetDetailModal');
+        const closeAssetModal = document.getElementById('closeAssetModal');
+        document.addEventListener('click', function (e) {
+            if (e.target.closest('.view-details-btn')) {
+                const btn = e.target.closest('.view-details-btn');
+                const assetId = btn.getAttribute('data-asset-id');
+                const details = assetDetails[assetId];
+                if (details) {
+                    document.getElementById('assetModalTitle').textContent = details.title;
+                    document.getElementById('assetModalImage').src = details.image;
+                    document.getElementById('assetModalDescription').textContent = details.description;
+                    const specsList = document.getElementById('assetModalSpecs');
+                    specsList.innerHTML = details.specs.map(s => `<li><span>${s.label}</span><strong>${s.value}</strong></li>`).join('');
+                    const securityDiv = document.getElementById('assetModalSecurity');
+                    securityDiv.innerHTML = details.security.map(f => `<span class="security-badge">${f}</span>`).join('');
+                    const historyList = document.getElementById('assetModalHistory');
+                    historyList.innerHTML = details.history.map(h => `<li><span>${h}</span></li>`).join('');
+                    assetDetailModal.classList.add('active');
+                }
+            }
+        });
+        closeAssetModal.addEventListener('click', () => assetDetailModal.classList.remove('active'));
+        window.addEventListener('click', (e) => { if (e.target === assetDetailModal) assetDetailModal.classList.remove('active'); });
+
+        // ========== MOBILE SIDEBAR ==========
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('dashboardSidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+            menuToggle.classList.remove('active');
+        });
+        // Close sidebar when a link is clicked
+        document.querySelectorAll('.dashboard-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 991) {
+                    sidebar.classList.remove('active');
+                    overlay.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                }
+            });
+        });
+
+        // ========== USER DROPDOWN ==========
+        document.getElementById('userDropdown').addEventListener('click', function (e) {
+            this.classList.toggle('active');
+            e.stopPropagation();
+        });
+        document.addEventListener('click', () => document.getElementById('userDropdown').classList.remove('active'));
+
+        // ========== LOGOUT ==========
+        function logout() {
+            sessionStorage.clear();
+            window.location.href = 'login.html';
+        }
+        document.getElementById('logoutBtn').addEventListener('click', (e) => { e.preventDefault(); logout(); });
+        document.getElementById('sidebarLogout').addEventListener('click', (e) => { e.preventDefault(); logout(); });
+
+        // ========== SCHEDULE VISIT ==========
+        function openScheduleModal() {
+            document.getElementById('scheduleModal').classList.add('active');
+        }
+        document.getElementById('scheduleVisitBtn').addEventListener('click', openScheduleModal);
+        document.getElementById('scheduleVisitSidebar').addEventListener('click', (e) => { e.preventDefault(); openScheduleModal(); });
+        document.getElementById('closeScheduleModal').addEventListener('click', () => {
+            document.getElementById('scheduleModal').classList.remove('active');
+        });
+        document.getElementById('scheduleForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Visit scheduled successfully! (demo)');
+            document.getElementById('scheduleModal').classList.remove('active');
+            document.getElementById('scheduleForm').reset();
+        });
+
+        // ========== SENSOR SIMULATION ==========
+        setInterval(() => {
+            document.getElementById('currentTemp').textContent = (Math.floor(Math.random() * 5) + 66) + '°F';
+            document.getElementById('currentHumidity').textContent = (Math.floor(Math.random() * 5) + 44) + '%';
+        }, 5000);
+
+        // ========== INACTIVITY WARNING ==========
+        let inactivityTimer;
+        function resetInactivity() {
+            clearTimeout(inactivityTimer);
+            document.getElementById('inactivityWarning').style.display = 'none';
+            inactivityTimer = setTimeout(() => {
+                document.getElementById('inactivityWarning').style.display = 'flex';
+            }, 30000);
+        }
+        ['mousemove', 'keydown', 'click', 'scroll', 'touchstart'].forEach(evt => document.addEventListener(evt, resetInactivity));
+        resetInactivity();
+        document.getElementById('extendSessionBtn').addEventListener('click', resetInactivity);
+    </script>
+</body>
+
+</html>
