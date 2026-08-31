@@ -5,26 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <meta name="description" content="Tevex Prime Guard Security – Elite Protection for Digital & Physical Assets">
-    <title>Tevex Prime Guard | Next‑Gen Security</title>
+    <meta name="description"
+        content="Tevex Prime Guard Security – reinforced vaults, biometric access, and armed watch for what you can't afford to lose.">
+    <title>Tevex Prime Guard | Vault-Grade Security</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/png" href="https://pbs.twimg.com/media/GlUVXk7XoAA_fbl?format=jpg&name=small">
     <style>
         :root {
-            --bg: #06060e;
-            --surface: #0d0d20;
-            --card: #161630;
-            --border: rgba(255, 255, 255, 0.08);
-            --text: #e0e0f0;
-            --text-light: #9999bb;
-            --accent: #9b7cfc;
-            --accent2: #00e5ff;
-            --pink: #ff5e9c;
-            --radius: 20px;
-            --shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
-            --glass: rgba(14, 14, 35, 0.6);
-            --gradient: linear-gradient(135deg, var(--accent), var(--accent2));
-            --transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --concrete: #17181a;
+            --concrete2: #1c1d20;
+            --steel: #26282c;
+            --steel-light: #46494f;
+            --hazard: #f2b705;
+            --oxide: #b3402f;
+            --paper: #eae5d8;
+            --ink: #cccdc9;
+            --ink-dim: #83857f;
+            --radius: 2px;
         }
 
         * {
@@ -38,190 +40,100 @@
         }
 
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
+            font-family: 'IBM Plex Mono', monospace;
+            background: var(--concrete);
+            color: var(--ink);
+            line-height: 1.65;
             overflow-x: hidden;
-            min-height: 100vh;
-            position: relative;
-        }
-
-        /* Background animations */
-        .animated-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            background: radial-gradient(ellipse at 20% 50%, rgba(155, 124, 252, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 20%, rgba(0, 229, 255, 0.06) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 80%, rgba(255, 94, 156, 0.04) 0%, transparent 50%);
-        }
-
-        .grid-mesh {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: meshMove 12s infinite alternate ease-in-out;
-        }
-
-        @keyframes meshMove {
-            0% {
-                opacity: 0.3;
-                background-position: 0 0;
-            }
-
-            100% {
-                opacity: 0.6;
-                background-position: 15px 15px;
-            }
-        }
-
-        .floating-orbs {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.12;
-            animation: orbFloat 14s infinite alternate;
-        }
-
-        .orb1 {
-            width: 500px;
-            height: 500px;
-            background: var(--accent);
-            top: -200px;
-            left: -100px;
-            animation-duration: 18s;
-        }
-
-        .orb2 {
-            width: 400px;
-            height: 400px;
-            background: var(--accent2);
-            bottom: -150px;
-            right: -100px;
-            animation-duration: 20s;
-        }
-
-        .orb3 {
-            width: 350px;
-            height: 350px;
-            background: var(--pink);
-            top: 60%;
-            left: 50%;
-            animation-duration: 16s;
-        }
-
-        @keyframes orbFloat {
-            0% {
-                transform: translate(0, 0) scale(1);
-            }
-
-            100% {
-                transform: translate(40px, -30px) scale(1.1);
-            }
         }
 
         h1,
         h2,
-        h3 {
-            font-weight: 700;
-            color: #fff;
-            letter-spacing: -0.3px;
+        h3,
+        h4 {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            color: var(--paper);
+            letter-spacing: 0.2px;
+            line-height: 1.15;
         }
 
         h1 {
-            font-size: clamp(2.2rem, 5vw, 4rem);
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
+            font-size: clamp(2.1rem, 5.4vw, 3.8rem);
+            font-weight: 700;
+            margin-bottom: 1.4rem;
         }
 
         h2 {
-            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
-            position: relative;
-            margin-bottom: 2.5rem;
-            display: inline-block;
+            font-size: clamp(1.6rem, 3.2vw, 2.3rem);
+            margin-bottom: 0.6rem;
         }
 
-        h2:after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -12px;
-            width: 70px;
-            height: 4px;
-            background: var(--gradient);
-            border-radius: 2px;
+        .section-kicker {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.78rem;
+            color: var(--hazard);
+            margin-bottom: 0.6rem;
         }
 
         .section-subtitle {
-            color: var(--text-light);
-            max-width: 600px;
-            margin: -1rem auto 3rem;
-            text-align: center;
-            font-size: 1.1rem;
+            color: var(--ink-dim);
+            max-width: 560px;
+            margin-bottom: 2.6rem;
+            font-size: 0.95rem;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1180px;
             margin: 0 auto;
             padding: 0 1.5rem;
-            position: relative;
-            z-index: 2;
         }
 
         section {
-            padding: 5rem 0;
+            padding: 4.5rem 0;
         }
 
-        /* Header */
+        section.alt {
+            background: var(--concrete2);
+            border-top: 1px solid #000;
+            border-bottom: 1px solid var(--steel);
+        }
+
+        a {
+            color: inherit;
+        }
+
+        /* ---------- Riveted plate ---------- */
+        .plate {
+            position: relative;
+            background: var(--steel);
+            border: 1px solid var(--steel-light);
+            border-radius: var(--radius);
+            background-image:
+                radial-gradient(circle 4.5px at 16px 16px, #6c6f74 0%, #1a1b1d 62%, transparent 63%),
+                radial-gradient(circle 4.5px at calc(100% - 16px) 16px, #6c6f74 0%, #1a1b1d 62%, transparent 63%),
+                radial-gradient(circle 4.5px at 16px calc(100% - 16px), #6c6f74 0%, #1a1b1d 62%, transparent 63%),
+                radial-gradient(circle 4.5px at calc(100% - 16px) calc(100% - 16px), #6c6f74 0%, #1a1b1d 62%, transparent 63%);
+            background-repeat: no-repeat;
+        }
+
+        /* ---------- Header ---------- */
         header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1000;
-            background: rgba(6, 6, 14, 0.8);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-            padding: 0.9rem 0;
-            transition: 0.3s;
-        }
-
-        header.scrolled {
-            padding: 0.5rem 0;
-            background: rgba(6, 6, 14, 0.95);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            background: #101112;
+            border-bottom: 3px solid var(--hazard);
+            padding: 0.7rem 0;
         }
 
         .header-inner {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
+            max-width: 1180px;
             margin: 0 auto;
             padding: 0 1.5rem;
         }
@@ -230,123 +142,87 @@
             display: flex;
             align-items: center;
             gap: 0.7rem;
-            color: #fff;
-            font-weight: 700;
-            font-size: 1.3rem;
+            font-family: 'Oswald', sans-serif;
+            color: var(--paper);
+            font-weight: 600;
+            font-size: 1.15rem;
             text-decoration: none;
             z-index: 1002;
         }
 
         .logo i {
-            color: var(--accent2);
-            font-size: 1.8rem;
-            filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.6));
+            color: var(--hazard);
+            font-size: 1.5rem;
         }
 
-        /* Hamburger Menu Toggle - Fixed & Visible */
         .menu-toggle {
             display: none;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            width: 44px;
-            height: 44px;
+            width: 42px;
+            height: 42px;
             cursor: pointer;
             z-index: 1002;
-            background: rgba(155, 124, 252, 0.15);
-            border: 1px solid rgba(155, 124, 252, 0.3);
-            border-radius: 10px;
-            padding: 8px;
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        .menu-toggle:hover {
-            background: rgba(155, 124, 252, 0.25);
-            border-color: var(--accent2);
-            box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+            background: var(--steel);
+            border: 1px solid var(--steel-light);
+            border-radius: var(--radius);
         }
 
         .menu-toggle span {
             display: block;
-            width: 26px;
-            height: 3px;
-            background: var(--accent2);
+            width: 22px;
+            height: 2px;
+            background: var(--hazard);
             margin: 3px 0;
-            transition: 0.3s;
-            border-radius: 3px;
-            box-shadow: 0 0 8px rgba(0, 229, 255, 0.6);
+            transition: 0.25s;
         }
 
-        /* Animated hamburger to X */
         .menu-toggle.active span:nth-child(1) {
             transform: rotate(45deg) translate(5px, 5px);
         }
 
         .menu-toggle.active span:nth-child(2) {
             opacity: 0;
-            transform: scale(0);
         }
 
         .menu-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
+            transform: rotate(-45deg) translate(6px, -6px);
         }
 
         nav ul {
             list-style: none;
             display: flex;
-            gap: 1.8rem;
+            gap: 1.7rem;
             align-items: center;
         }
 
         nav a {
-            color: var(--text-light);
+            font-family: 'Oswald', sans-serif;
+            color: var(--ink);
             text-decoration: none;
             font-weight: 500;
-            transition: 0.3s;
-            font-size: 0.95rem;
-            position: relative;
-        }
-
-        nav a:not(.btn-nav):after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent2);
-            transition: 0.3s;
-        }
-
-        nav a:not(.btn-nav):hover:after {
-            width: 100%;
+            font-size: 0.92rem;
         }
 
         nav a:hover {
-            color: var(--accent2);
+            color: var(--hazard);
         }
 
         .btn-nav {
-            background: var(--gradient);
-            padding: 0.65rem 1.8rem;
-            border-radius: 40px;
-            color: #fff !important;
+            background: var(--hazard);
+            color: #171717 !important;
+            padding: 0.55rem 1.3rem;
+            border-radius: var(--radius);
             font-weight: 600;
-            letter-spacing: 0.3px;
-            box-shadow: 0 4px 15px rgba(155, 124, 252, 0.35);
-            display: inline-block;
-            text-align: center;
-            white-space: nowrap;
         }
 
         .btn-nav:hover {
-            box-shadow: 0 8px 25px rgba(0, 229, 255, 0.5);
-            transform: translateY(-2px);
+            color: #171717 !important;
+            background: #ffce33;
         }
 
-        /* Mobile Navigation */
-        @media (max-width: 768px) {
+        @media (max-width: 820px) {
             .menu-toggle {
                 display: flex;
             }
@@ -355,19 +231,15 @@
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 85%;
-                max-width: 340px;
-                height: 100vh;
+                width: 82%;
+                max-width: 320px;
                 height: 100dvh;
-                background: rgba(13, 13, 32, 0.98);
-                backdrop-filter: blur(20px);
-                -webkit-backdrop-filter: blur(20px);
-                padding: 6rem 2rem 2rem;
-                transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+                background: #101112;
+                border-left: 3px solid var(--hazard);
+                padding: 6rem 1.8rem 2rem;
+                transition: 0.35s ease;
                 z-index: 1001;
-                box-shadow: -15px 0 40px rgba(0, 0, 0, 0.6);
                 overflow-y: auto;
-                border-left: 1px solid var(--border);
             }
 
             nav.active {
@@ -376,429 +248,371 @@
 
             nav ul {
                 flex-direction: column;
-                gap: 0.3rem;
-                width: 100%;
-            }
-
-            nav ul li {
-                width: 100%;
+                align-items: stretch;
+                gap: 0.2rem;
             }
 
             nav ul li a {
                 display: block;
-                padding: 0.9rem 1rem;
-                border-radius: 10px;
-                font-size: 1.05rem;
-                transition: 0.3s;
-            }
-
-            nav ul li a:hover {
-                background: rgba(155, 124, 252, 0.1);
+                padding: 0.85rem 0.6rem;
+                border-bottom: 1px solid var(--steel);
             }
 
             nav ul li a.btn-nav {
-                display: block;
                 text-align: center;
                 margin-top: 0.8rem;
-                padding: 0.9rem 1.5rem;
-                font-size: 1rem;
-            }
-
-            .logo {
-                font-size: 1.1rem;
-            }
-
-            .logo i {
-                font-size: 1.5rem;
-            }
-        }
-
-        @media (max-width: 400px) {
-            .logo span {
-                font-size: 0.9rem;
-            }
-
-            .menu-toggle {
-                width: 38px;
-                height: 38px;
-                padding: 6px;
-            }
-
-            .menu-toggle span {
-                width: 22px;
-                height: 2.5px;
+                border-bottom: none;
             }
         }
 
         .overlay {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             background: rgba(0, 0, 0, 0.7);
             z-index: 999;
-            opacity: 0;
-            transition: opacity 0.3s;
         }
 
         .overlay.active {
             display: block;
-            opacity: 1;
         }
 
-        /* Hero Section */
+        /* ---------- Hero ---------- */
         .hero {
-            min-height: 100vh;
             min-height: 100dvh;
             display: flex;
             align-items: center;
-            text-align: center;
-            padding-top: 4rem;
-            position: relative;
-            overflow: hidden;
-            background: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            padding-top: 5rem;
+            background:
+                linear-gradient(180deg, rgba(17, 18, 20, 0.35), rgba(17, 18, 20, 0.92)),
+                url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 30% 40%, rgba(155, 124, 252, 0.2) 0%, rgba(6, 6, 14, 0.92) 90%);
-            z-index: 1;
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 3rem;
+            align-items: center;
         }
 
-        .hero .container {
-            position: relative;
-            z-index: 2;
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: left;
             }
         }
 
-        .hero p {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: var(--text-light);
-            max-width: 650px;
-            margin: 0 auto 2.5rem;
+        .hero p.lead {
+            font-size: 1.02rem;
+            color: var(--ink);
+            max-width: 480px;
+            margin-bottom: 2.2rem;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
-            gap: 0.6rem;
-            padding: 0.9rem 2rem;
-            border-radius: 40px;
+            gap: 0.55rem;
+            padding: 0.85rem 1.7rem;
+            border-radius: var(--radius);
             font-weight: 600;
             text-decoration: none;
-            transition: 0.3s;
             border: none;
             cursor: pointer;
-            font-size: 1rem;
-            letter-spacing: 0.2px;
+            font-size: 0.95rem;
+            font-family: 'Oswald', sans-serif;
         }
 
         .btn-primary {
-            background: var(--gradient);
-            color: #fff;
-            box-shadow: 0 8px 25px rgba(155, 124, 252, 0.5);
+            background: var(--hazard);
+            color: #171717;
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(0, 229, 255, 0.5);
+            background: #ffce33;
         }
 
         .btn-outline {
-            border: 2px solid var(--accent2);
-            color: var(--accent2);
+            border: 1px solid var(--ink-dim);
+            color: var(--paper);
             background: transparent;
         }
 
         .btn-outline:hover {
-            background: var(--accent2);
-            color: #000;
-            box-shadow: 0 8px 25px rgba(0, 229, 255, 0.4);
+            border-color: var(--paper);
         }
 
-        /* Stats Section */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        @media (max-width: 768px) {
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-            }
-        }
-
-        @media (max-width: 400px) {
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 0.8rem;
-            }
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2rem 1rem;
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: var(--radius);
-            border: 1px solid var(--border);
-            transition: 0.3s;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent2);
-            box-shadow: 0 10px 30px rgba(0, 229, 255, 0.1);
-        }
-
-        .stat-number {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 800;
-            color: var(--accent2);
-            margin-bottom: 0.3rem;
-            line-height: 1;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--text-light);
-        }
-
-        /* Services Preview Cards */
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.8rem;
-        }
-
-        @media (max-width: 400px) {
-            .grid-3 {
-                grid-template-columns: 1fr;
-                gap: 1.2rem;
-            }
-        }
-
-        .card {
-            background: var(--glass);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 2.2rem 1.8rem;
-            transition: 0.35s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(155, 124, 252, 0.05) 0%, transparent 80%);
-            z-index: -1;
-            transition: 0.4s;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0, 229, 255, 0.12);
-            border-color: var(--accent2);
-        }
-
-        .card:hover::before {
-            background: linear-gradient(135deg, rgba(155, 124, 252, 0.12) 0%, transparent 80%);
-        }
-
-        .card-icon {
-            width: 65px;
-            height: 65px;
-            border-radius: 18px;
-            background: rgba(155, 124, 252, 0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            color: var(--accent2);
-            margin-bottom: 1.5rem;
-            transition: 0.3s;
-        }
-
-        .card:hover .card-icon {
-            background: rgba(0, 229, 255, 0.15);
-            color: #fff;
-            transform: scale(1.05);
-        }
-
-        .card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.7rem;
-        }
-
-        .card p {
-            color: var(--text-light);
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-
-        /* Why Us Highlights */
-        .highlights-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-
-        @media (max-width: 400px) {
-            .highlights-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .highlight-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            padding: 1.5rem;
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            transition: 0.3s;
-        }
-
-        .highlight-item:hover {
-            border-color: var(--accent2);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 229, 255, 0.08);
-        }
-
-        .highlight-icon {
-            width: 50px;
-            height: 50px;
-            min-width: 50px;
-            border-radius: 14px;
-            background: rgba(155, 124, 252, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            color: var(--accent2);
-        }
-
-        .highlight-content h4 {
-            color: #fff;
-            font-size: 1rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .highlight-content p {
-            color: var(--text-light);
-            font-size: 0.85rem;
-            line-height: 1.4;
-        }
-
-        /* Testimonial Preview */
-        .testimonial-preview {
-            background: var(--glass);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 2.5rem 2rem;
-            text-align: center;
-            max-width: 700px;
+        /* ---------- Dial ---------- */
+        .dial-wrap {
+            width: 300px;
+            height: 300px;
             margin: 0 auto;
             position: relative;
         }
 
-        .testimonial-preview .quote-icon {
-            font-size: 3rem;
-            color: var(--accent2);
-            opacity: 0.3;
-            margin-bottom: 1rem;
+        .dial-ring {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background:
+                repeating-conic-gradient(var(--paper) 0deg 1.4deg, transparent 1.4deg 9deg),
+                radial-gradient(circle, var(--steel) 62%, #101112 63%);
+            box-shadow: inset 0 0 0 2px #000, 0 20px 45px rgba(0, 0, 0, 0.55);
+            animation: dialTurn 6.5s cubic-bezier(.2, .85, .25, 1) 1 both;
         }
 
-        .testimonial-preview blockquote {
-            font-size: 1.1rem;
-            color: var(--text);
-            font-style: italic;
-            margin-bottom: 1.5rem;
+        .dial-num {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--paper);
+            transform-origin: 0 0;
         }
 
-        .testimonial-author {
+        .dial-hub {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 92px;
+            height: 92px;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 30%, #55585e, #191a1c 75%);
+            box-shadow: 0 0 0 4px #101112, inset 0 0 8px rgba(0, 0, 0, 0.6);
             display: flex;
             align-items: center;
-            gap: 0.8rem;
             justify-content: center;
         }
 
-        .testimonial-author img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--accent2);
+        .dial-hub::before,
+        .dial-hub::after {
+            content: '';
+            position: absolute;
+            background: #101112;
+            opacity: 0.6;
         }
 
-        /* CTA Section */
-        .cta-section {
-            text-align: center;
-            padding: 4rem 2rem;
-            background: var(--glass);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            margin: 0 1rem;
+        .dial-hub::before {
+            width: 66px;
+            height: 6px;
         }
 
-        @media (max-width: 768px) {
-            .cta-section {
-                padding: 3rem 1.5rem;
-                margin: 0 0.5rem;
+        .dial-hub::after {
+            width: 6px;
+            height: 66px;
+        }
+
+        .dial-mark {
+            position: absolute;
+            top: -3px;
+            left: 50%;
+            width: 3px;
+            height: 22px;
+            background: var(--hazard);
+            transform: translateX(-50%);
+            box-shadow: 0 0 10px rgba(242, 183, 5, 0.7);
+        }
+
+        @keyframes dialTurn {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            58% {
+                transform: rotate(646deg);
+            }
+
+            100% {
+                transform: rotate(628deg);
             }
         }
 
-        .cta-section h2 {
-            margin-bottom: 1rem;
+        @media (prefers-reduced-motion: reduce) {
+            .dial-ring {
+                animation: none;
+            }
         }
 
-        .cta-section p {
-            color: var(--text-light);
-            max-width: 500px;
-            margin: 0 auto 2rem;
+        /* ---------- Nameplate stats ---------- */
+        .nameplate {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            padding: 0;
         }
 
-        /* Footer */
+        @media (max-width: 760px) {
+            .nameplate {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .nameplate .field {
+            padding: 1.8rem 1.6rem;
+            border-right: 1px solid var(--steel-light);
+        }
+
+        .nameplate .field:last-child {
+            border-right: none;
+        }
+
+        @media (max-width: 760px) {
+            .nameplate .field:nth-child(2n) {
+                border-right: none;
+            }
+
+            .nameplate .field:nth-child(-n+2) {
+                border-bottom: 1px solid var(--steel-light);
+            }
+        }
+
+        .field .num {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: var(--hazard);
+        }
+
+        .field .lbl {
+            font-size: 0.78rem;
+            color: var(--ink-dim);
+            margin-top: 0.25rem;
+        }
+
+        /* ---------- Services ---------- */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 1.6rem;
+        }
+
+        .svc {
+            padding: 2.1rem 1.8rem;
+        }
+
+        .svc-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: var(--radius);
+            background: #101112;
+            border: 1px solid var(--steel-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--hazard);
+            margin-bottom: 1.3rem;
+        }
+
+        .svc h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .svc p {
+            color: var(--ink-dim);
+            font-size: 0.92rem;
+        }
+
+        /* ---------- Spec list (why us) ---------- */
+        .spec-list {
+            border-top: 1px solid var(--steel-light);
+        }
+
+        .spec-row {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 1.5rem;
+            padding: 1.4rem 0;
+            border-bottom: 1px solid var(--steel-light);
+        }
+
+        @media (max-width: 640px) {
+            .spec-row {
+                grid-template-columns: 1fr;
+                gap: 0.4rem;
+            }
+        }
+
+        .spec-row .k {
+            font-family: 'Oswald', sans-serif;
+            color: var(--paper);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .spec-row .v {
+            color: var(--ink-dim);
+            font-size: 0.92rem;
+        }
+
+        /* ---------- Case file / testimonial ---------- */
+        .case-file {
+            position: relative;
+            max-width: 680px;
+            margin: 0 auto;
+            background: var(--paper);
+            color: #22201b;
+            padding: 2.4rem 2.2rem;
+            border-radius: var(--radius);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .case-file blockquote {
+            font-size: 1.05rem;
+            margin-bottom: 1.4rem;
+        }
+
+        .case-file .who {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+        }
+
+        .case-file .role {
+            font-size: 0.82rem;
+            color: #6b6357;
+        }
+
+        .stamp {
+            position: absolute;
+            top: 1.6rem;
+            right: 1.8rem;
+            border: 2px solid var(--oxide);
+            color: var(--oxide);
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            font-size: 0.72rem;
+            letter-spacing: 1px;
+            padding: 0.35rem 0.6rem;
+            transform: rotate(6deg);
+            opacity: 0.85;
+        }
+
+        /* ---------- CTA hazard banner ---------- */
+        .hazard-bar {
+            height: 10px;
+            background: repeating-linear-gradient(135deg, var(--hazard) 0 18px, #171717 18px 36px);
+        }
+
+        .cta-inner {
+            text-align: center;
+            padding: 3.2rem 1.5rem;
+            background: var(--steel);
+        }
+
+        .cta-inner p {
+            color: var(--ink-dim);
+            max-width: 480px;
+            margin: 0.8rem auto 1.8rem;
+            font-size: 0.95rem;
+        }
+
+        /* ---------- Footer ---------- */
         footer {
-            background: var(--surface);
-            border-top: 1px solid var(--border);
-            padding: 3rem 0 1.5rem;
-            color: var(--text-light);
+            background: #101112;
+            border-top: 3px solid var(--hazard);
+            padding: 3rem 0 1.4rem;
         }
 
         .footer-grid {
@@ -815,79 +629,53 @@
             }
         }
 
-        footer h3 {
-            color: #fff;
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
+        footer h4 {
+            font-size: 0.95rem;
+            margin-bottom: 0.9rem;
+            color: var(--paper);
         }
 
-        footer a {
-            color: var(--text-light);
+        footer a,
+        footer p {
+            color: var(--ink-dim);
             text-decoration: none;
             display: block;
             margin-bottom: 0.5rem;
-            transition: 0.3s;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         footer a:hover {
-            color: var(--accent2);
+            color: var(--hazard);
         }
 
         .footer-bottom {
-            border-top: 1px solid var(--border);
-            padding-top: 1.5rem;
+            border-top: 1px solid var(--steel-light);
+            padding-top: 1.4rem;
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 1rem;
-            font-size: 0.85rem;
-            text-align: center;
+            font-size: 0.78rem;
         }
 
-        @media (max-width: 500px) {
-            .footer-bottom {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
-
-        /* Scroll reveal animation */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: 0.6s ease-out;
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid var(--hazard);
+            outline-offset: 2px;
         }
     </style>
 </head>
 
 <body>
-    <!-- Animated Background -->
-    <div class="animated-bg"></div>
-    <div class="grid-mesh"></div>
-    <div class="floating-orbs">
-        <div class="orb orb1"></div>
-        <div class="orb orb2"></div>
-        <div class="orb orb3"></div>
-    </div>
-
-    <!-- Header -->
     <header id="header">
         <div class="header-inner">
-            <a href="index.html" class="logo">
-                <i class="fas fa-shield-haltered"></i><span>Tevex Prime Guard</span>
-            </a>
+            <a href="index.html" class="logo"><i class="fas fa-vault"></i><span>TEVEX PRIME GUARD</span></a>
             <div class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
                 <span></span><span></span><span></span>
             </div>
             <nav id="mainNav">
                 <ul>
-                    <li><a href="index.html" style="color:var(--accent2);">Home</a></li>
+                    <li><a href="index.html" style="color:var(--hazard);">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="why-us.html">Why Us</a></li>
@@ -901,197 +689,188 @@
     <div class="overlay" id="overlay"></div>
 
     <main>
-        <!-- Hero Section -->
         <section class="hero" id="home">
-            <div class="container">
-                <h1>Next‑Gen Security<br>for Your Digital & Physical Assets</h1>
-                <p>Military‑grade vaults, biometric access, and 24/7 monitoring. Trusted by elite clients worldwide.</p>
-                <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
-                    <a href="contact.html" class="btn btn-primary">
-                        <i class="fas fa-shield-alt"></i> Get Secure Storage
-                    </a>
-                    <a href="services.html" class="btn btn-outline">
-                        <i class="fas fa-list"></i> View Services
-                    </a>
+            <div class="container hero-grid">
+                <div>
+                    <h1>Whatever You Can't Afford To Lose Goes Here</h1>
+                    <p class="lead">Reinforced concrete, biometric locks, and an armed watch that doesn't blink — for
+                        the assets you'd never trust to a regular safe.</p>
+                    <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+                        <a href="contact.html" class="btn btn-primary"><i class="fas fa-shield-halved"></i> Request
+                            Vault Access</a>
+                        <a href="services.html" class="btn btn-outline"><i class="fas fa-file-lines"></i> Read The Spec
+                            Sheet</a>
+                    </div>
+                </div>
+                <div class="dial-wrap" aria-hidden="true">
+                    <div class="dial-ring">
+                        <span class="dial-num" style="transform: rotate(0deg) translate(-8px,-128px);">00</span>
+                        <span class="dial-num" style="transform: rotate(36deg) translate(-8px,-128px);">10</span>
+                        <span class="dial-num" style="transform: rotate(72deg) translate(-8px,-128px);">20</span>
+                        <span class="dial-num" style="transform: rotate(108deg) translate(-8px,-128px);">30</span>
+                        <span class="dial-num" style="transform: rotate(144deg) translate(-8px,-128px);">40</span>
+                        <span class="dial-num" style="transform: rotate(180deg) translate(-8px,-128px);">50</span>
+                        <span class="dial-num" style="transform: rotate(216deg) translate(-8px,-128px);">60</span>
+                        <span class="dial-num" style="transform: rotate(252deg) translate(-8px,-128px);">70</span>
+                        <span class="dial-num" style="transform: rotate(288deg) translate(-8px,-128px);">80</span>
+                        <span class="dial-num" style="transform: rotate(324deg) translate(-8px,-128px);">90</span>
+                        <div class="dial-hub"></div>
+                    </div>
+                    <div class="dial-mark"></div>
                 </div>
             </div>
         </section>
 
-        <!-- Stats Section -->
-        <section>
-            <div class="container">
-                <div class="stats-grid reveal">
-                    <div class="stat-item">
-                        <div class="stat-number">99.9%</div>
-                        <div class="stat-label">Uptime Guaranteed</div>
+        <section style="padding: 0;">
+            <div class="container" style="padding: 0;">
+                <div class="plate nameplate">
+                    <div class="field">
+                        <div class="num">99.9%</div>
+                        <div class="lbl">RATED UPTIME</div>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number">25+</div>
-                        <div class="stat-label">Years Experience</div>
+                    <div class="field">
+                        <div class="num">25+</div>
+                        <div class="lbl">YEARS IN SERVICE</div>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number">$15B+</div>
-                        <div class="stat-label">Assets Protected</div>
+                    <div class="field">
+                        <div class="num">$15B+</div>
+                        <div class="lbl">ASSETS UNDER GUARD</div>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number">24/7</div>
-                        <div class="stat-label">Armed Monitoring</div>
+                    <div class="field">
+                        <div class="num">24/7</div>
+                        <div class="lbl">ARMED WATCH ROTATION</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Services Preview -->
         <section>
             <div class="container">
-                <h2>Our Core Services</h2>
-                <p class="section-subtitle">Comprehensive protection for everything you value most</p>
-                <div class="grid-3 reveal">
-                    <div class="card">
-                        <div class="card-icon"><i class="fas fa-vault"></i></div>
+                <div class="section-kicker">WHAT WE BUILD</div>
+                <h2>Three Ways In, All of Them Locked</h2>
+                <p class="section-subtitle">Physical storage, digital storage, and everything in between — engineered,
+                    not assembled.</p>
+                <div class="grid-3">
+                    <div class="plate svc">
+                        <div class="svc-icon"><i class="fas fa-vault"></i></div>
                         <h3>Private Vaults</h3>
-                        <p>Custom-sized secure storage with biometric access, climate control, and 24/7 surveillance.
-                        </p>
+                        <p>Steel-and-concrete chambers sized to what you're storing, opened only by the biometrics on
+                            file — never a key, never a guess.</p>
                     </div>
-                    <div class="card">
-                        <div class="card-icon"><i class="fas fa-shield-virus"></i></div>
+                    <div class="plate svc">
+                        <div class="svc-icon"><i class="fas fa-shield-virus"></i></div>
                         <h3>Cyber Vault</h3>
-                        <p>Encrypted digital storage for crypto keys, passwords, and sensitive corporate data.</p>
+                        <p>Air-gapped cold storage for crypto keys, credentials, and the files that would end you if
+                            they leaked.</p>
                     </div>
-                    <div class="card">
-                        <div class="card-icon"><i class="fas fa-truck-fast"></i></div>
+                    <div class="plate svc">
+                        <div class="svc-icon"><i class="fas fa-truck-fast"></i></div>
                         <h3>Secure Transport</h3>
-                        <p>Armored vehicles, real-time GPS tracking, and armed escort for high-value shipments.</p>
-                    </div>
-                </div>
-                <div style="text-align:center; margin-top:2.5rem;">
-                    <a href="services.html" class="btn btn-outline">
-                        <i class="fas fa-arrow-right"></i> All Services
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Why Choose Us Highlights -->
-        <section>
-            <div class="container">
-                <h2>Why Clients Trust Us</h2>
-                <p class="section-subtitle">Industry-leading security standards with uncompromising dedication</p>
-                <div class="highlights-grid reveal">
-                    <div class="highlight-item">
-                        <div class="highlight-icon"><i class="fas fa-fingerprint"></i></div>
-                        <div class="highlight-content">
-                            <h4>Biometric Access</h4>
-                            <p>Multi-factor authentication with retina, fingerprint & voice recognition</p>
-                        </div>
-                    </div>
-                    <div class="highlight-item">
-                        <div class="highlight-icon"><i class="fas fa-user-shield"></i></div>
-                        <div class="highlight-content">
-                            <h4>Veteran Personnel</h4>
-                            <p>Ex-military & law enforcement professionals guarding your assets</p>
-                        </div>
-                    </div>
-                    <div class="highlight-item">
-                        <div class="highlight-icon"><i class="fas fa-building-shield"></i></div>
-                        <div class="highlight-content">
-                            <h4>Seismic-Rated Vaults</h4>
-                            <p>Engineered to withstand earthquakes, floods & forced entry attempts</p>
-                        </div>
-                    </div>
-                    <div class="highlight-item">
-                        <div class="highlight-icon"><i class="fas fa-certificate"></i></div>
-                        <div class="highlight-content">
-                            <h4>ISO 27001 Certified</h4>
-                            <p>Full regulatory compliance including SOC 2 Type II & GDPR standards</p>
-                        </div>
+                        <p>Armored convoy, live GPS tracking, and an armed escort from your door to ours — and back, if
+                            you ever need it.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Testimonial Preview -->
+        <section class="alt">
+            <div class="container">
+                <div class="section-kicker">WHY CLIENTS STAY</div>
+                <h2>Every Claim Below, Checked Somewhere Else First</h2>
+                <p class="section-subtitle">We'd rather show our work than ask you to take our word for it.</p>
+                <div class="spec-list">
+                    <div class="spec-row">
+                        <div class="k">Biometric Access</div>
+                        <div class="v">Retina, fingerprint, and voiceprint, checked against each other — not just one of
+                            them.</div>
+                    </div>
+                    <div class="spec-row">
+                        <div class="k">Personnel</div>
+                        <div class="v">Guards pulled from military and federal law enforcement backgrounds, not a
+                            security-guard temp agency.</div>
+                    </div>
+                    <div class="spec-row">
+                        <div class="k">Structure</div>
+                        <div class="v">Vaults engineered against seismic shock, flooding, and forced entry — rated and
+                            tested, not assumed.</div>
+                    </div>
+                    <div class="spec-row">
+                        <div class="k">Compliance</div>
+                        <div class="v">ISO 27001, SOC 2 Type II, and GDPR — audited annually, not just claimed on a page
+                            like this one.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section>
             <div class="container">
-                <h2>What Our Clients Say</h2>
-                <div class="testimonial-preview reveal">
-                    <div class="quote-icon"><i class="fas fa-quote-right"></i></div>
-                    <blockquote>
-                        "Tevex provides unparalleled security for my art collection. The biometric access and 24/7
-                        monitoring give me absolute peace of mind. I wouldn't trust anyone else."
-                    </blockquote>
-                    <div class="testimonial-author">
-                        <img src="https://pbs.twimg.com/media/GlUXyJnXIAAj6a-?format=jpg&name=small" alt="John D."
-                            loading="lazy">
-                        <div>
-                            <strong style="color:#fff;">John D.</strong><br>
-                            <small style="color:var(--text-light);">Art Collector & Investor</small>
-                        </div>
-                    </div>
+                <div class="section-kicker">CASE FILE 0417</div>
+                <h2>What's On Record</h2>
+                <div class="case-file">
+                    <div class="stamp">VERIFIED CLIENT</div>
+                    <blockquote>"Tevex holds my collection like it's their own reputation on the line. I've moved three
+                        galleries' worth of work through their vault and never once worried about it."</blockquote>
+                    <div class="who">John D.</div>
+                    <div class="role">Art Collector & Investor</div>
                 </div>
                 <div style="text-align:center; margin-top:2rem;">
-                    <a href="testimonials.html" class="btn btn-outline">
-                        <i class="fas fa-star"></i> More Testimonials
-                    </a>
+                    <a href="testimonials.html" class="btn btn-outline"><i class="fas fa-folder-open"></i> More Case
+                        Files</a>
                 </div>
             </div>
         </section>
 
-        <!-- CTA Section -->
-        <section>
-            <div class="container">
-                <div class="cta-section reveal">
-                    <h2>Ready to Secure Your Assets?</h2>
-                    <p>Join thousands of elite clients who trust Tevex Prime Guard with their most valuable possessions.
+        <section style="padding: 0;">
+            <div class="hazard-bar"></div>
+            <div class="cta-inner">
+                <div class="container" style="padding:0;">
+                    <h2>Ready To Lock This Down?</h2>
+                    <p>Talk to us before you need us. Most of our best clients call before there's a problem, not after.
                     </p>
                     <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
-                        <a href="contact.html" class="btn btn-primary">
-                            <i class="fas fa-envelope"></i> Contact Us Today
-                        </a>
-                        <a href="tel:+144053037308" class="btn btn-outline">
-                            <i class="fas fa-phone"></i> +44 (405) 303-7308
-                        </a>
+                        <a href="contact.html" class="btn btn-primary"><i class="fas fa-envelope"></i> Contact Us
+                            Today</a>
+                        <a href="tel:+144053037308" class="btn btn-outline"><i class="fas fa-phone"></i> +44 (405)
+                            303-7308</a>
                     </div>
                 </div>
             </div>
+            <div class="hazard-bar"></div>
         </section>
     </main>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-grid">
                 <div>
-                    <h3><i class="fas fa-shield-haltered"></i> Tevex Prime Guard</h3>
-                    <p style="color:var(--text-light); font-size:0.9rem;">Industry leader in high-security storage
-                        solutions since 1997.</p>
+                    <h4><i class="fas fa-vault"></i> Tevex Prime Guard</h4>
+                    <p>Industry leader in high-security storage since 1997.</p>
                 </div>
                 <div>
-                    <h3>Quick Links</h3>
+                    <h4>Quick Links</h4>
                     <a href="index.html">Home</a>
                     <a href="about.html">About</a>
                     <a href="services.html">Services</a>
                     <a href="contact.html">Contact</a>
                 </div>
                 <div>
-                    <h3>Services</h3>
+                    <h4>Services</h4>
                     <a href="services.html">Private Vaults</a>
                     <a href="services.html">Safe Deposit Boxes</a>
                     <a href="services.html">Secure Transport</a>
                     <a href="services.html">Cyber Vault</a>
                 </div>
                 <div>
-                    <h3>Contact</h3>
-                    <p style="font-size:0.9rem;">info@tevexprimeguards.us</p>
-                    <p style="font-size:0.9rem;">+44 (405) 303-7308</p>
-                    <p style="font-size:0.9rem;">505 Talbot St #909, London, ON</p>
+                    <h4>Contact</h4>
+                    <p>info@tevexprimeguards.us</p>
+                    <p>+44 (405) 303-7308</p>
+                    <p>505 Talbot St #909, London, ON</p>
                 </div>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 1997 - 2026 Tevex Prime Guard Security. All rights reserved.</p>
-                <div>
-                    <a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Terms of Service</a>
-                </div>
+                <div><a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Terms of Service</a></div>
             </div>
         </div>
     </footer>
@@ -1103,30 +882,14 @@
             const overlay = document.getElementById('overlay');
             const body = document.body;
 
-            // Toggle menu
             menuToggle.addEventListener('click', function (e) {
                 e.stopPropagation();
-                const isActive = mainNav.classList.contains('active');
-                if (isActive) {
-                    closeMenu();
-                } else {
-                    openMenu();
-                }
+                mainNav.classList.contains('active') ? closeMenu() : openMenu();
             });
-
-            // Close on overlay click
             overlay.addEventListener('click', closeMenu);
-
-            // Close on nav link click
-            document.querySelectorAll('nav a').forEach(link => {
-                link.addEventListener('click', closeMenu);
-            });
-
-            // Close on Escape key
+            document.querySelectorAll('nav a').forEach(link => link.addEventListener('click', closeMenu));
             document.addEventListener('keydown', function (e) {
-                if (e.key === 'Escape' && mainNav.classList.contains('active')) {
-                    closeMenu();
-                }
+                if (e.key === 'Escape' && mainNav.classList.contains('active')) closeMenu();
             });
 
             function openMenu() {
@@ -1135,7 +898,6 @@
                 menuToggle.classList.add('active');
                 body.style.overflow = 'hidden';
             }
-
             function closeMenu() {
                 mainNav.classList.remove('active');
                 overlay.classList.remove('active');
@@ -1143,43 +905,13 @@
                 body.style.overflow = '';
             }
 
-            // Header scroll effect
-            window.addEventListener('scroll', function () {
-                const header = document.getElementById('header');
-                if (window.scrollY > 50) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            });
-
-            // Scroll reveal animation
-            const revealElements = document.querySelectorAll('.reveal');
-            const revealObserver = new IntersectionObserver(function (entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        revealObserver.unobserve(entry.target);
-                    }
-                });
-            }, {
-                threshold: 0.15,
-                rootMargin: '0px 0px -30px 0px'
-            });
-
-            revealElements.forEach(el => revealObserver.observe(el));
-
-            // Smooth scroll for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
                     const target = document.querySelector(this.getAttribute('href'));
                     if (target) {
                         const headerHeight = document.getElementById('header').offsetHeight;
-                        window.scrollTo({
-                            top: target.offsetTop - headerHeight,
-                            behavior: 'smooth'
-                        });
+                        window.scrollTo({ top: target.offsetTop - headerHeight, behavior: 'smooth' });
                     }
                 });
             });
