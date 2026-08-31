@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/png" href="https://pbs.twimg.com/media/GlUVXk7XoAA_fbl?format=jpg&name=small">
     <style>
+        /* ... (keep all existing CSS unchanged) ... */
         :root {
             --concrete: #17181a;
             --concrete2: #1c1d20;
@@ -70,7 +71,6 @@
             max-width: 100%;
         }
 
-        /* ---------- Riveted plate ---------- */
         .plate {
             position: relative;
             background: var(--steel);
@@ -89,7 +89,6 @@
             background: repeating-linear-gradient(135deg, var(--hazard) 0 18px, #171717 18px 36px);
         }
 
-        /* ---------- Header ---------- */
         header {
             position: sticky;
             top: 0;
@@ -229,7 +228,6 @@
             }
         }
 
-        /* ---------- Layout ---------- */
         .dashboard-container {
             display: flex;
             gap: 2rem;
@@ -245,7 +243,6 @@
             }
         }
 
-        /* ---------- Sidebar ---------- */
         .dashboard-sidebar {
             flex: 0 0 260px;
             background: var(--concrete2);
@@ -323,7 +320,6 @@
             border-top: 1px solid var(--steel-light);
         }
 
-        /* ---------- Main content ---------- */
         .dashboard-main {
             flex: 1;
             min-width: 0;
@@ -340,7 +336,6 @@
             border-bottom: 1px solid var(--steel-light);
         }
 
-        /* ---------- Overview stats (nameplate style) ---------- */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -371,7 +366,6 @@
             margin-top: 0.25rem;
         }
 
-        /* ---------- Ledger entries (assets) ---------- */
         .ledger {
             display: flex;
             flex-direction: column;
@@ -490,7 +484,6 @@
             font-weight: 600;
         }
 
-        /* ---------- Drawer ---------- */
         .drawer-scrim {
             position: fixed;
             inset: 0;
@@ -612,7 +605,6 @@
             border-radius: var(--radius);
         }
 
-        /* ---------- Inactivity warning ---------- */
         .inactivity-warning {
             background: rgba(179, 64, 47, 0.15);
             border: 1px solid var(--oxide);
@@ -630,7 +622,6 @@
             margin-left: auto;
         }
 
-        /* ---------- Buttons ---------- */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -669,7 +660,6 @@
             font-size: 0.7rem;
         }
 
-        /* ---------- Modal (for schedule) ---------- */
         .modal {
             display: none;
             position: fixed;
@@ -713,7 +703,6 @@
             color: var(--hazard);
         }
 
-        /* ---------- Footer ---------- */
         .dashboard-footer {
             border-top: 3px solid var(--hazard);
             background: #101112;
@@ -1084,16 +1073,40 @@
             document.getElementById('currentHumidity').textContent = (Math.floor(Math.random() * 5) + 44) + '%';
         }, 5000);
 
-        // ========== INACTIVITY WARNING ==========
+        // ========== INACTIVITY HANDLING (FIXED) ==========
         let inactivityTimer;
+        let countdownTimer;
+        let secondsLeft = 10;
+        const warningEl = document.getElementById('inactivityWarning');
+        const countdownSpan = document.getElementById('warningCountdown');
+
+        function startInactivityCountdown() {
+            warningEl.style.display = 'flex';
+            countdownSpan.textContent = secondsLeft;
+            countdownTimer = setInterval(() => {
+                secondsLeft--;
+                countdownSpan.textContent = secondsLeft;
+                if (secondsLeft <= 0) {
+                    clearInterval(countdownTimer);
+                    logout();
+                }
+            }, 1000);
+        }
+
         function resetInactivity() {
             clearTimeout(inactivityTimer);
-            document.getElementById('inactivityWarning').style.display = 'none';
+            clearInterval(countdownTimer);
+            warningEl.style.display = 'none';
+            secondsLeft = 10;
+            countdownSpan.textContent = secondsLeft;
             inactivityTimer = setTimeout(() => {
-                document.getElementById('inactivityWarning').style.display = 'flex';
+                startInactivityCountdown();
             }, 15000);
         }
-        ['mousemove', 'keydown', 'click', 'scroll', 'touchstart'].forEach(evt => document.addEventListener(evt, resetInactivity));
+
+        ['mousemove', 'keydown', 'click', 'scroll', 'touchstart'].forEach(evt =>
+            document.addEventListener(evt, resetInactivity)
+        );
         resetInactivity();
         document.getElementById('extendSessionBtn').addEventListener('click', resetInactivity);
     </script>
