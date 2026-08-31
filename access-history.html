@@ -72,7 +72,6 @@
             max-width: 100%;
         }
 
-        /* ---------- Riveted plate ---------- */
         .plate {
             position: relative;
             background: var(--steel);
@@ -91,7 +90,6 @@
             background: repeating-linear-gradient(135deg, var(--hazard) 0 18px, #171717 18px 36px);
         }
 
-        /* ---------- Header ---------- */
         header {
             position: sticky;
             top: 0;
@@ -231,7 +229,6 @@
             }
         }
 
-        /* ---------- Layout ---------- */
         .dashboard-container {
             display: flex;
             gap: 2rem;
@@ -248,7 +245,6 @@
             }
         }
 
-        /* ---------- Sidebar ---------- */
         .dashboard-sidebar {
             flex: 0 0 260px;
             background: var(--concrete2);
@@ -320,7 +316,6 @@
             border-left-color: var(--hazard);
         }
 
-        /* ---------- Main content ---------- */
         .dashboard-main {
             flex: 1;
             min-width: 0;
@@ -337,7 +332,6 @@
             border-bottom: 1px solid var(--steel-light);
         }
 
-        /* ---------- Activity list ---------- */
         .activity-list {
             display: flex;
             flex-direction: column;
@@ -380,7 +374,6 @@
             font-size: 0.8rem;
         }
 
-        /* ---------- Filter bar ---------- */
         .filter-bar {
             display: flex;
             gap: 1rem;
@@ -410,7 +403,6 @@
             color: var(--paper);
         }
 
-        /* ---------- Buttons ---------- */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -445,7 +437,23 @@
             border-color: var(--paper);
         }
 
-        /* ---------- Footer ---------- */
+        .inactivity-warning {
+            background: rgba(179, 64, 47, 0.15);
+            border: 1px solid var(--oxide);
+            color: #e88;
+            padding: 1rem;
+            border-radius: var(--radius);
+            display: none;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .inactivity-warning .btn {
+            margin-left: auto;
+        }
+
         .dashboard-footer {
             border-top: 3px solid var(--hazard);
             background: #101112;
@@ -525,6 +533,13 @@
                 <button class="btn" onclick="alert('Report exported! (demo)')">
                     <i class="fas fa-download"></i> Export Log
                 </button>
+            </div>
+
+            <!-- Inactivity warning -->
+            <div class="inactivity-warning" id="inactivityWarning">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>You will be logged out in <span id="warningCountdown">10</span>s due to inactivity.</span>
+                <button class="btn btn-sm" id="extendSessionBtn">Stay Logged In</button>
             </div>
 
             <section class="section">
@@ -634,25 +649,49 @@
         });
         document.addEventListener('click', () => document.getElementById('userDropdown').classList.remove('active'));
 
-        // ========== INACTIVITY WARNING ==========
-        let inactivityTimer;
-        function resetInactivity() {
-            clearTimeout(inactivityTimer);
-            document.getElementById('inactivityWarning').style.display = 'none';
-            inactivityTimer = setTimeout(() => {
-                document.getElementById('inactivityWarning').style.display = 'flex';
-            }, 15000);
-        }
-        ['mousemove', 'keydown', 'click', 'scroll', 'touchstart'].forEach(evt => document.addEventListener(evt, resetInactivity));
-        resetInactivity();
-        document.getElementById('extendSessionBtn').addEventListener('click', resetInactivity);
-
         // ========== LOGOUT ==========
-        document.getElementById('logoutBtn').addEventListener('click', (e) => {
-            e.preventDefault();
+        function logout() {
             sessionStorage.clear();
             window.location.href = 'login.html';
-        });
+        }
+        document.getElementById('logoutBtn').addEventListener('click', (e) => { e.preventDefault(); logout(); });
+
+        // ========== INACTIVITY HANDLING (FIXED) ==========
+        let inactivityTimer;
+        let countdownTimer;
+        let secondsLeft = 10;
+        const warningEl = document.getElementById('inactivityWarning');
+        const countdownSpan = document.getElementById('warningCountdown');
+
+        function startInactivityCountdown() {
+            warningEl.style.display = 'flex';
+            countdownSpan.textContent = secondsLeft;
+            countdownTimer = setInterval(() => {
+                secondsLeft--;
+                countdownSpan.textContent = secondsLeft;
+                if (secondsLeft <= 0) {
+                    clearInterval(countdownTimer);
+                    logout();
+                }
+            }, 1000);
+        }
+
+        function resetInactivity() {
+            clearTimeout(inactivityTimer);
+            clearInterval(countdownTimer);
+            warningEl.style.display = 'none';
+            secondsLeft = 10;
+            countdownSpan.textContent = secondsLeft;
+            inactivityTimer = setTimeout(() => {
+                startInactivityCountdown();
+            }, 15000);
+        }
+
+        ['mousemove', 'keydown', 'click', 'scroll', 'touchstart'].forEach(evt =>
+            document.addEventListener(evt, resetInactivity)
+        );
+        resetInactivity();
+        document.getElementById('extendSessionBtn').addEventListener('click', resetInactivity);
     </script>
 </body>
 
