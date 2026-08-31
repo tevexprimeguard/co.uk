@@ -498,6 +498,29 @@
             transform: none;
         }
 
+        .btn-sm {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.7rem;
+        }
+
+        /* ---------- Inactivity warning ---------- */
+        .inactivity-warning {
+            background: rgba(179, 64, 47, 0.15);
+            border: 1px solid var(--oxide);
+            color: #e88;
+            padding: 1rem;
+            border-radius: var(--radius);
+            display: none;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .inactivity-warning .btn {
+            margin-left: auto;
+        }
+
         /* ---------- Footer ---------- */
         .dashboard-footer {
             border-top: 3px solid var(--hazard);
@@ -574,6 +597,13 @@
 
             <h1 style="font-size:clamp(1.5rem,3vw,2rem); color:var(--paper); margin-bottom:1.5rem;">24/7 Concierge
                 Support</h1>
+
+            <!-- Inactivity warning -->
+            <div class="inactivity-warning" id="inactivityWarning">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>You will be logged out in <span id="warningCountdown">10</span>s due to inactivity.</span>
+                <button class="btn btn-sm" id="extendSessionBtn">Stay Logged In</button>
+            </div>
 
             <!-- Contact Information Cards -->
             <section class="section">
@@ -711,11 +741,48 @@
         document.addEventListener('click', () => document.getElementById('userDropdown').classList.remove('active'));
 
         // ========== LOGOUT ==========
-        document.getElementById('logoutBtn').addEventListener('click', (e) => {
-            e.preventDefault();
+        function logout() {
             sessionStorage.clear();
             window.location.href = 'login.html';
-        });
+        }
+        document.getElementById('logoutBtn').addEventListener('click', (e) => { e.preventDefault(); logout(); });
+
+        // ========== INACTIVITY HANDLING (FIXED) ==========
+        let inactivityTimer;
+        let countdownTimer;
+        let secondsLeft = 10;
+        const warningEl = document.getElementById('inactivityWarning');
+        const countdownSpan = document.getElementById('warningCountdown');
+
+        function startInactivityCountdown() {
+            warningEl.style.display = 'flex';
+            countdownSpan.textContent = secondsLeft;
+            countdownTimer = setInterval(() => {
+                secondsLeft--;
+                countdownSpan.textContent = secondsLeft;
+                if (secondsLeft <= 0) {
+                    clearInterval(countdownTimer);
+                    logout();
+                }
+            }, 1000);
+        }
+
+        function resetInactivity() {
+            clearTimeout(inactivityTimer);
+            clearInterval(countdownTimer);
+            warningEl.style.display = 'none';
+            secondsLeft = 10;
+            countdownSpan.textContent = secondsLeft;
+            inactivityTimer = setTimeout(() => {
+                startInactivityCountdown();
+            }, 15000);
+        }
+
+        ['mousemove', 'keydown', 'click', 'scroll', 'touchstart'].forEach(evt =>
+            document.addEventListener(evt, resetInactivity)
+        );
+        resetInactivity();
+        document.getElementById('extendSessionBtn').addEventListener('click', resetInactivity);
     </script>
 </body>
 
