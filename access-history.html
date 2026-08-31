@@ -634,6 +634,19 @@
         });
         document.addEventListener('click', () => document.getElementById('userDropdown').classList.remove('active'));
 
+        // ========== INACTIVITY WARNING ==========
+        let inactivityTimer;
+        function resetInactivity() {
+            clearTimeout(inactivityTimer);
+            document.getElementById('inactivityWarning').style.display = 'none';
+            inactivityTimer = setTimeout(() => {
+                document.getElementById('inactivityWarning').style.display = 'flex';
+            }, 15000);
+        }
+        ['mousemove', 'keydown', 'click', 'scroll', 'touchstart'].forEach(evt => document.addEventListener(evt, resetInactivity));
+        resetInactivity();
+        document.getElementById('extendSessionBtn').addEventListener('click', resetInactivity);
+
         // ========== LOGOUT ==========
         document.getElementById('logoutBtn').addEventListener('click', (e) => {
             e.preventDefault();
